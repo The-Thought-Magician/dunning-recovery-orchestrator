@@ -21,6 +21,24 @@ interface ReasonTrend {
   series: Array<{ code: string; label?: string; points: number[] }>
 }
 
+// Raw shape actually returned by GET /insights/effectiveness: a flat list of
+// (reason, tactic) cells rather than reason rows with a nested tactics array.
+interface EffectivenessCell {
+  reason: string
+  tactic: string
+  attempted: number
+  recovered: number
+  attempted_cents: number
+  recovered_cents: number
+  rate: number
+}
+
+interface RawEffectiveness {
+  matrix: EffectivenessCell[]
+  tactics: string[]
+  reasons: string[]
+}
+
 interface Effectiveness {
   matrix: Array<{
     code: string
@@ -57,14 +75,44 @@ export default function InsightsPage() {
     setLoading(true)
     setError(null)
     try {
-      const [r, t, e] = await Promise.all([
+      const [r, tRaw, eRaw] = await Promise.all([
         api.getDeclineReasons() as Promise<DeclineReason[]>,
-        api.getReasonTrend() as Promise<ReasonTrend>,
-        api.getEffectiveness() as Promise<Effectiveness>,
+        api.getReasonTrend() as Promise<{
+          periods?: string[]
+          series?: Array<{ code: string; label?: string; counts?: number[]; points?: number[] }>
+        }>,
+        api.getEffectiveness() as Promise<RawEffectiveness>,
       ])
       setReasons(Array.isArray(r) ? r : [])
-      setTrend(t && Array.isArray(t.periods) ? t : { periods: [], series: [] })
-      setEffectiveness(e && Array.isArray(e.matrix) ? e : { matrix: [] })
+
+      // Backend returns per-series counts as `counts`, not `points`; normalize here.
+      const periods = tRaw && Array.isArray(tRaw.periods) ? tRaw.periods : []
+      const series = (tRaw?.series ?? []).map((s) => ({
+        code: s.code,
+        label: s.label,
+        points: s.points ?? s.counts ?? [],
+      }))
+      setTrend({ periods, series })
+
+      // Backend returns a flat list of (reason, tactic) cells, not reason rows
+      // with a nested tactics array. Group them here to match what the UI needs.
+      const cells = eRaw && Array.isArray(eRaw.matrix) ? eRaw.matrix : []
+      const byReason = new Map<string, Effectiveness['matrix'][number]>()
+      for (const cell of cells) {
+        const code = cell.reason ?? 'unknown'
+        let row = byReason.get(code)
+        if (!row) {
+          row = { code, tactics: [] }
+          byReason.set(code, row)
+        }
+        row.tactics.push({
+          tactic: cell.tactic,
+          attempted: cell.attempted ?? 0,
+          recovered: cell.recovered ?? 0,
+          rate: cell.rate ?? 0,
+        })
+      }
+      setEffectiveness({ matrix: Array.from(byReason.values()) })
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to load insights')
     } finally {
@@ -94,7 +142,7 @@ export default function InsightsPage() {
   // tactic columns across the effectiveness matrix
   const tacticColumns = useMemo(() => {
     const set = new Set<string>()
-    effectiveness?.matrix.forEach((row) => row.tactics.forEach((t) => set.add(t.tactic)))
+    ;(effectiveness?.matrix ?? []).forEach((row) => (row.tactics ?? []).forEach((t) => set.add(t.tactic)))
     return Array.from(set)
   }, [effectiveness])
 
@@ -252,7 +300,7 @@ export default function InsightsPage() {
                 </thead>
                 <tbody className="divide-y divide-slate-800/70">
                   {effectiveness.matrix.map((row) => {
-                    const byTactic = new Map(row.tactics.map((t) => [t.tactic, t]))
+                    const byTactic = new Map((row.tactics ?? []).map((t) => [t.tactic, t]))
                     return (
                       <tr key={row.code} className="hover:bg-slate-800/20">
                         <td className="sticky left-0 z-10 bg-slate-900/60 px-4 py-2">
@@ -292,7 +340,7 @@ export default function InsightsPage() {
 
 function TrendChart({ trend }: { trend: ReasonTrend }) {
   const palette = ['#34d399', '#38bdf8', '#fbbf24', '#f87171', '#a78bfa', '#22d3ee', '#fb7185', '#a3e635']
-  const series = trend.series.slice(0, palette.length)
+  const series = trend.series.slice(0, palette.length).map((s) => ({ ...s, points: s.points ?? [] }))
   const max = Math.max(
     1,
     ...series.flatMap((s) => s.points),

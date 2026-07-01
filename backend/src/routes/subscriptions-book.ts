@@ -31,14 +31,57 @@ const accountSchema = z.object({
   updater_coverage: z.enum(['covered', 'not_covered', 'unknown']).optional(),
 })
 
+// Derive an account's current book-health bucket from its most recent failed
+// charge rather than trusting the stored `status` column, which is only set
+// once at creation/seed time and is never synced when a charge fails, retries,
+// or recovers. Falls back to the stored status for accounts with no charges.
+function deriveAccountStatus(
+  storedStatus: string,
+  latestCharge: { status: string; retry_count: number } | undefined,
+): string {
+  if (!latestCharge) return storedStatus
+  switch (latestCharge.status) {
+    case 'recovered':
+      return 'recovered'
+    case 'lost':
+    case 'written_off':
+      return 'churned_involuntary'
+    case 'failed':
+    case 'retrying':
+      return latestCharge.retry_count > 0 ? 'in_dunning' : 'at_risk'
+    default:
+      return storedStatus
+  }
+}
+
 // GET /health-summary — counts by status (declared before /:id so it is not shadowed).
 router.get('/health-summary', async (c) => {
   const userId = getUserId(c)
   const ws = await getOrCreateWorkspace(userId)
-  const rows = await db
+  const accounts = await db
     .select()
     .from(subscription_accounts)
     .where(eq(subscription_accounts.workspace_id, ws.id))
+  const charges = await db
+    .select()
+    .from(failed_charges)
+    .where(eq(failed_charges.workspace_id, ws.id))
+
+  // Latest charge per account, by failed_at.
+  const latestByAccount = new Map<string, { status: string; retry_count: number; failed_at: Date }>()
+  for (const ch of charges) {
+    if (!ch.subscription_account_id) continue
+    const existing = latestByAccount.get(ch.subscription_account_id)
+    const failedAt = ch.failed_at ? new Date(ch.failed_at) : new Date(0)
+    if (!existing || failedAt > existing.failed_at) {
+      latestByAccount.set(ch.subscription_account_id, {
+        status: ch.status,
+        retry_count: ch.retry_count,
+        failed_at: failedAt,
+      })
+    }
+  }
+
   const summary = {
     active: 0,
     at_risk: 0,
@@ -46,9 +89,10 @@ router.get('/health-summary', async (c) => {
     churned_involuntary: 0,
     recovered: 0,
   }
-  for (const r of rows) {
-    if (r.status in summary) {
-      summary[r.status as keyof typeof summary] += 1
+  for (const acct of accounts) {
+    const derived = deriveAccountStatus(acct.status, latestByAccount.get(acct.id))
+    if (derived in summary) {
+      summary[derived as keyof typeof summary] += 1
     }
   }
   return c.json(summary)
