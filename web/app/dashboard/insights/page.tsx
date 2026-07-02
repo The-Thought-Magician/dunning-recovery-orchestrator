@@ -53,13 +53,13 @@ function fmtMoney(cents: number): string {
 
 function heatColor(rate: number): string {
   // rate 0..1 -> emerald intensity
-  if (rate <= 0) return 'bg-slate-900/60 text-slate-600'
+  if (rate <= 0) return 'bg-zinc-900/60 text-zinc-600'
   const pct = Math.min(1, Math.max(0, rate))
-  if (pct >= 0.75) return 'bg-emerald-500/80 text-slate-950'
-  if (pct >= 0.55) return 'bg-emerald-500/55 text-slate-950'
-  if (pct >= 0.4) return 'bg-emerald-500/35 text-emerald-50'
-  if (pct >= 0.25) return 'bg-emerald-500/20 text-emerald-200'
-  return 'bg-emerald-500/10 text-emerald-300'
+  if (pct >= 0.75) return 'bg-amber-500/80 text-zinc-950'
+  if (pct >= 0.55) return 'bg-amber-500/55 text-zinc-950'
+  if (pct >= 0.4) return 'bg-amber-500/35 text-amber-50'
+  if (pct >= 0.25) return 'bg-amber-500/20 text-amber-200'
+  return 'bg-amber-500/10 text-amber-300'
 }
 
 export default function InsightsPage() {
@@ -153,7 +153,7 @@ export default function InsightsPage() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-xl font-semibold text-white">Decline Reason Insights</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Where involuntary churn comes from, how reasons trend, and which tactics recover them.
           </p>
         </div>
@@ -188,12 +188,12 @@ export default function InsightsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search code or label..."
-              className="w-48 rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-1.5 text-sm text-slate-200 placeholder:text-slate-600 focus:border-emerald-500/60 focus:outline-none"
+              className="w-48 rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-1.5 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-amber-500/60 focus:outline-none"
             />
             <select
               value={sortKey}
               onChange={(e) => setSortKey(e.target.value as 'count' | 'mrr')}
-              className="rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-1.5 text-sm text-slate-200 focus:border-emerald-500/60 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-1.5 text-sm text-zinc-200 focus:border-amber-500/60 focus:outline-none"
             >
               <option value="count">Sort by Count</option>
               <option value="mrr">Sort by MRR</option>
@@ -225,20 +225,20 @@ export default function InsightsPage() {
                   return (
                     <TR key={r.code}>
                       <TD>
-                        <span className="font-mono text-xs text-emerald-300">{r.code}</span>
+                        <span className="font-mono text-xs text-amber-300">{r.code}</span>
                       </TD>
                       <TD>{r.label || '—'}</TD>
                       <TD className="text-right tabular-nums">{r.count.toLocaleString()}</TD>
                       <TD className="text-right tabular-nums text-amber-300">{fmtMoney(r.mrr_cents)}</TD>
                       <TD>
                         <div className="flex items-center gap-2">
-                          <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-800">
+                          <div className="h-2 flex-1 overflow-hidden rounded-full bg-zinc-800">
                             <div
-                              className="h-full rounded-full bg-emerald-500"
+                              className="h-full rounded-full bg-amber-500"
                               style={{ width: `${Math.max(2, share * 100)}%` }}
                             />
                           </div>
-                          <span className="w-10 text-right text-xs text-slate-500">
+                          <span className="w-10 text-right text-xs text-zinc-500">
                             {(share * 100).toFixed(0)}%
                           </span>
                         </div>
@@ -270,7 +270,7 @@ export default function InsightsPage() {
       <Card>
         <CardHeader>
           <h2 className="text-sm font-semibold text-white">Reason → Tactic Effectiveness Matrix</h2>
-          <p className="mt-1 text-xs text-slate-500">Recovery rate of each tactic per decline reason. Greener = higher recovery.</p>
+          <p className="mt-1 text-xs text-zinc-500">Recovery rate of each tactic per decline reason. Greener = higher recovery.</p>
         </CardHeader>
         <CardBody className="p-0">
           {!effectiveness || effectiveness.matrix.length === 0 || tacticColumns.length === 0 ? (
@@ -284,35 +284,35 @@ export default function InsightsPage() {
             <div className="w-full overflow-x-auto">
               <table className="w-full border-collapse text-sm">
                 <thead>
-                  <tr className="border-b border-slate-800">
-                    <th className="sticky left-0 z-10 bg-slate-900/60 px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">
+                  <tr className="border-b border-zinc-800">
+                    <th className="sticky left-0 z-10 bg-zinc-900/60 px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-zinc-500">
                       Reason
                     </th>
                     {tacticColumns.map((t) => (
                       <th
                         key={t}
-                        className="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-slate-500"
+                        className="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-zinc-500"
                       >
                         {t}
                       </th>
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/70">
+                <tbody className="divide-y divide-zinc-800/70">
                   {effectiveness.matrix.map((row) => {
                     const byTactic = new Map((row.tactics ?? []).map((t) => [t.tactic, t]))
                     return (
-                      <tr key={row.code} className="hover:bg-slate-800/20">
-                        <td className="sticky left-0 z-10 bg-slate-900/60 px-4 py-2">
-                          <div className="font-mono text-xs text-emerald-300">{row.code}</div>
-                          {row.label && <div className="text-xs text-slate-500">{row.label}</div>}
+                      <tr key={row.code} className="hover:bg-zinc-800/20">
+                        <td className="sticky left-0 z-10 bg-zinc-900/60 px-4 py-2">
+                          <div className="font-mono text-xs text-amber-300">{row.code}</div>
+                          {row.label && <div className="text-xs text-zinc-500">{row.label}</div>}
                         </td>
                         {tacticColumns.map((t) => {
                           const cell = byTactic.get(t)
                           if (!cell || cell.attempted === 0) {
                             return (
                               <td key={t} className="px-2 py-2 text-center">
-                                <div className="rounded-md bg-slate-900/60 px-2 py-2 text-xs text-slate-600">—</div>
+                                <div className="rounded-md bg-zinc-900/60 px-2 py-2 text-xs text-zinc-600">—</div>
                               </td>
                             )
                           }
@@ -397,7 +397,7 @@ function TrendChart({ trend }: { trend: ReasonTrend }) {
         {series.map((s, si) => (
           <div key={s.code} className="flex items-center gap-1.5">
             <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: palette[si] }} />
-            <span className="text-xs text-slate-400">{s.label || s.code}</span>
+            <span className="text-xs text-zinc-400">{s.label || s.code}</span>
           </div>
         ))}
       </div>

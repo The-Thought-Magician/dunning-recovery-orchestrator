@@ -40,9 +40,9 @@ function PolicyTimeline({ grace, suspend }: { grace: number; suspend: number }) 
   const suspendPct = Math.min(100, (suspend / total) * 100)
   return (
     <div className="space-y-2">
-      <div className="relative h-8 w-full overflow-hidden rounded-lg bg-slate-800">
+      <div className="relative h-8 w-full overflow-hidden rounded-lg bg-zinc-800">
         <div
-          className="absolute inset-y-0 left-0 bg-emerald-500/40"
+          className="absolute inset-y-0 left-0 bg-amber-500/40"
           style={{ width: `${gracePct}%` }}
           title={`Grace: ${grace}d`}
         />
@@ -57,7 +57,7 @@ function PolicyTimeline({ grace, suspend }: { grace: number; suspend: number }) 
           title={`Soft suspend day ${suspend}`}
         />
       </div>
-      <div className="flex justify-between text-xs text-slate-500">
+      <div className="flex justify-between text-xs text-zinc-500">
         <span>Day 0 — failure</span>
         <span className="text-amber-400">Grace {grace}d</span>
         <span className="text-red-400">Suspend {suspend}d</span>
@@ -197,7 +197,7 @@ export default function GracePage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold text-white">Grace & Soft Suspension</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Model how grace windows and soft-suspension timing affect recovered revenue before you ship a policy.
           </p>
         </div>
@@ -222,7 +222,7 @@ export default function GracePage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search policies..."
-            className="w-56 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
+            className="w-56 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 placeholder-zinc-600 focus:border-amber-500 focus:outline-none"
           />
         </CardHeader>
         <CardBody className="px-0 py-0">
@@ -260,20 +260,20 @@ export default function GracePage() {
               <TBody>
                 {filtered.map((p) => (
                   <TR key={p.id}>
-                    <TD className="font-medium text-slate-100">{p.name}</TD>
+                    <TD className="font-medium text-zinc-100">{p.name}</TD>
                     <TD>
-                      {p.plan_name ? <Badge tone="sky">{p.plan_name}</Badge> : <span className="text-slate-600">All plans</span>}
+                      {p.plan_name ? <Badge tone="sky">{p.plan_name}</Badge> : <span className="text-zinc-600">All plans</span>}
                     </TD>
-                    <TD className="text-right tabular-nums text-slate-200">{p.grace_days}d</TD>
-                    <TD className="text-right tabular-nums text-slate-200">{p.soft_suspend_after_days}d</TD>
+                    <TD className="text-right tabular-nums text-zinc-200">{p.grace_days}d</TD>
+                    <TD className="text-right tabular-nums text-zinc-200">{p.soft_suspend_after_days}d</TD>
                     <TD className="text-right">
                       <Badge tone="slate">v{p.version}</Badge>
                     </TD>
                     <TD className="text-right tabular-nums">
                       {p.projected_impact_cents == null ? (
-                        <span className="text-slate-600">not modeled</span>
+                        <span className="text-zinc-600">not modeled</span>
                       ) : (
-                        <span className="text-emerald-400">{money(p.projected_impact_cents)}</span>
+                        <span className="text-amber-400">{money(p.projected_impact_cents)}</span>
                       )}
                     </TD>
                     <TD className="text-right">
@@ -320,28 +320,28 @@ export default function GracePage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Name</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Name</label>
             <input
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder="Standard 7-day grace"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-amber-500 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
               Plan (optional)
             </label>
             <input
               value={form.plan_name}
               onChange={(e) => setForm({ ...form, plan_name: e.target.value })}
               placeholder="Leave blank to apply to all plans"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-amber-500 focus:outline-none"
             />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Grace days
               </label>
               <input
@@ -349,11 +349,11 @@ export default function GracePage() {
                 min={0}
                 value={form.grace_days}
                 onChange={(e) => setForm({ ...form, grace_days: Number(e.target.value) })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Soft suspend after (days)
               </label>
               <input
@@ -361,12 +361,12 @@ export default function GracePage() {
                 min={0}
                 value={form.soft_suspend_after_days}
                 onChange={(e) => setForm({ ...form, soft_suspend_after_days: Number(e.target.value) })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
               />
             </div>
           </div>
-          <div className="rounded-lg border border-slate-800 bg-slate-950/60 p-4">
-            <div className="mb-3 text-xs font-medium uppercase tracking-wide text-slate-500">Lifecycle preview</div>
+          <div className="rounded-lg border border-zinc-800 bg-zinc-950/60 p-4">
+            <div className="mb-3 text-xs font-medium uppercase tracking-wide text-zinc-500">Lifecycle preview</div>
             <PolicyTimeline grace={Number(form.grace_days)} suspend={Number(form.soft_suspend_after_days)} />
           </div>
         </div>
@@ -396,22 +396,22 @@ export default function GracePage() {
             {modelPolicy && (
               <PolicyTimeline grace={modelPolicy.grace_days} suspend={modelPolicy.soft_suspend_after_days} />
             )}
-            <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-4 text-center">
-              <div className="text-xs font-medium uppercase tracking-wide text-emerald-400/80">
+            <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-4 text-center">
+              <div className="text-xs font-medium uppercase tracking-wide text-amber-400/80">
                 Projected revenue impact
               </div>
-              <div className="mt-1 text-3xl font-semibold text-emerald-400">
+              <div className="mt-1 text-3xl font-semibold text-amber-400">
                 {money(modelResult.projected_impact_cents)}
               </div>
             </div>
             {modelResult.detail && Object.keys(modelResult.detail).length > 0 && (
               <div>
-                <div className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-500">Breakdown</div>
+                <div className="mb-2 text-xs font-medium uppercase tracking-wide text-zinc-500">Breakdown</div>
                 <div className="space-y-1.5">
                   {Object.entries(modelResult.detail).map(([k, v]) => (
-                    <div key={k} className="flex justify-between border-b border-slate-800/60 pb-1.5 text-sm">
-                      <span className="text-slate-400">{k.replace(/_/g, ' ')}</span>
-                      <span className="tabular-nums text-slate-200">
+                    <div key={k} className="flex justify-between border-b border-zinc-800/60 pb-1.5 text-sm">
+                      <span className="text-zinc-400">{k.replace(/_/g, ' ')}</span>
+                      <span className="tabular-nums text-zinc-200">
                         {typeof v === 'number' && /cents/i.test(k) ? money(v) : String(v)}
                       </span>
                     </div>
@@ -421,7 +421,7 @@ export default function GracePage() {
             )}
           </div>
         ) : (
-          <p className="text-sm text-slate-500">No model output.</p>
+          <p className="text-sm text-zinc-500">No model output.</p>
         )}
       </Modal>
     </div>

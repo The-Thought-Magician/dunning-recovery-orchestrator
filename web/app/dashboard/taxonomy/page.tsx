@@ -58,13 +58,13 @@ function pct(n: number): string {
 
 function RateBar({ rate }: { rate: number }) {
   const w = Math.max(0, Math.min(100, rate * 100))
-  const tone = w >= 50 ? 'bg-emerald-500' : w >= 25 ? 'bg-amber-500' : 'bg-red-500'
+  const tone = w >= 50 ? 'bg-amber-500' : w >= 25 ? 'bg-amber-500' : 'bg-red-500'
   return (
     <div className="flex items-center gap-2">
-      <div className="h-2 w-24 overflow-hidden rounded-full bg-slate-800">
+      <div className="h-2 w-24 overflow-hidden rounded-full bg-zinc-800">
         <div className={`h-full ${tone}`} style={{ width: `${w}%` }} />
       </div>
-      <span className="tabular-nums text-xs text-slate-400">{pct(rate)}</span>
+      <span className="tabular-nums text-xs text-zinc-400">{pct(rate)}</span>
     </div>
   )
 }
@@ -206,7 +206,7 @@ export default function TaxonomyPage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-xl font-semibold text-white">Decline-Code Taxonomy</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Canonical processor decline codes merged with your workspace overrides, with measured recovery rates.
           </p>
         </div>
@@ -244,12 +244,12 @@ export default function TaxonomyPage() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search code, label, tactic..."
-            className="min-w-[200px] flex-1 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
+            className="min-w-[200px] flex-1 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-amber-500 focus:outline-none"
           />
           <select
             value={classFilter}
             onChange={(e) => setClassFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+            className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
           >
             <option value="all">All classes</option>
             {classes.map((c) => (
@@ -261,18 +261,18 @@ export default function TaxonomyPage() {
           <select
             value={recoverableFilter}
             onChange={(e) => setRecoverableFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+            className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
           >
             <option value="all">Recoverable: any</option>
             <option value="yes">Recoverable</option>
             <option value="no">Not recoverable</option>
           </select>
-          <label className="flex items-center gap-2 text-sm text-slate-400">
+          <label className="flex items-center gap-2 text-sm text-zinc-400">
             <input
               type="checkbox"
               checked={onlyOverridden}
               onChange={(e) => setOnlyOverridden(e.target.checked)}
-              className="h-4 w-4 rounded border-slate-700 bg-slate-950 accent-emerald-500"
+              className="h-4 w-4 rounded border-zinc-700 bg-zinc-950 accent-amber-500"
             />
             Overridden only
           </label>
@@ -304,19 +304,19 @@ export default function TaxonomyPage() {
                   return (
                     <TR key={c.id}>
                       <TD>
-                        <div className="flex items-center gap-2 font-mono text-xs text-slate-200">
+                        <div className="flex items-center gap-2 font-mono text-xs text-zinc-200">
                           {c.code}
                           {overridden && <Badge tone="amber">override</Badge>}
                         </div>
                         {c.network_codes && c.network_codes.length > 0 && (
-                          <div className="mt-0.5 font-mono text-[10px] text-slate-600">
+                          <div className="mt-0.5 font-mono text-[10px] text-zinc-600">
                             {c.network_codes.join(', ')}
                           </div>
                         )}
                       </TD>
                       <TD>
-                        <div className="text-slate-200">{c.label}</div>
-                        <div className="text-xs text-slate-500">{c.category}</div>
+                        <div className="text-zinc-200">{c.label}</div>
+                        <div className="text-xs text-zinc-500">{c.category}</div>
                       </TD>
                       <TD>
                         <Badge tone={classTone(c.decline_class)}>{c.decline_class}</Badge>
@@ -330,12 +330,12 @@ export default function TaxonomyPage() {
                       </TD>
                       <TD>
                         {c.default_tactic ? (
-                          <span className="font-mono text-xs text-slate-300">{c.default_tactic}</span>
+                          <span className="font-mono text-xs text-zinc-300">{c.default_tactic}</span>
                         ) : (
-                          <span className="text-xs text-slate-600">—</span>
+                          <span className="text-xs text-zinc-600">—</span>
                         )}
                       </TD>
-                      <TD>{r ? <RateBar rate={r.rate ?? 0} /> : <span className="text-xs text-slate-600">no data</span>}</TD>
+                      <TD>{r ? <RateBar rate={r.rate ?? 0} /> : <span className="text-xs text-zinc-600">no data</span>}</TD>
                       <TD>
                         <div className="flex justify-end gap-2">
                           <Button size="sm" variant="secondary" onClick={() => openEdit(c)}>
@@ -374,30 +374,30 @@ export default function TaxonomyPage() {
       >
         {editing && (
           <div className="space-y-4">
-            <p className="text-sm text-slate-400">
-              Canonical: <span className="text-slate-200">{editing.label}</span> ·{' '}
+            <p className="text-sm text-zinc-400">
+              Canonical: <span className="text-zinc-200">{editing.label}</span> ·{' '}
               <span className="font-mono">{editing.decline_class}</span> ·{' '}
               {editing.recoverable ? 'recoverable' : 'not recoverable'}
             </p>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Decline class
               </label>
               <input
                 value={form.decline_class}
                 onChange={(e) => setForm({ ...form, decline_class: e.target.value })}
                 placeholder={editing.decline_class}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Recoverable
               </label>
               <select
                 value={form.recoverable}
                 onChange={(e) => setForm({ ...form, recoverable: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
               >
                 <option value="inherit">Inherit canonical ({editing.recoverable ? 'yes' : 'no'})</option>
                 <option value="yes">Recoverable</option>
@@ -405,24 +405,24 @@ export default function TaxonomyPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Default tactic
               </label>
               <input
                 value={form.default_tactic}
                 onChange={(e) => setForm({ ...form, default_tactic: e.target.value })}
                 placeholder={editing.default_tactic ?? 'tactic key'}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Notes</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Notes</label>
               <textarea
                 value={form.notes}
                 onChange={(e) => setForm({ ...form, notes: e.target.value })}
                 rows={3}
                 placeholder="Why this override exists"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
               />
             </div>
             {actionMsg && <p className="text-sm text-red-400">{actionMsg}</p>}

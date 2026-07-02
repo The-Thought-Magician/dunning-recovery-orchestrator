@@ -162,7 +162,7 @@ export default function TacticsPage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-xl font-semibold text-white">Recovery Tactics</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Your library of recovery plays with measured recovery rates from real attempts.
           </p>
         </div>
@@ -172,8 +172,8 @@ export default function TacticsPage() {
       </div>
 
       {banner && (
-        <Card className={banner.tone === 'emerald' ? 'border-emerald-500/40 bg-emerald-500/5' : 'border-red-500/40 bg-red-500/5'}>
-          <CardBody className={banner.tone === 'emerald' ? 'text-sm text-emerald-300' : 'text-sm text-red-300'}>
+        <Card className={banner.tone === 'emerald' ? 'border-amber-500/40 bg-amber-500/5' : 'border-red-500/40 bg-red-500/5'}>
+          <CardBody className={banner.tone === 'emerald' ? 'text-sm text-amber-300' : 'text-sm text-red-300'}>
             {banner.text}
           </CardBody>
         </Card>
@@ -212,13 +212,13 @@ export default function TacticsPage() {
                 const w = (rate / maxRate) * 100
                 return (
                   <div key={t.id} className="flex items-center gap-3">
-                    <div className="w-40 truncate text-xs text-slate-400" title={t.name}>
+                    <div className="w-40 truncate text-xs text-zinc-400" title={t.name}>
                       {t.name}
                     </div>
-                    <div className="h-3 flex-1 overflow-hidden rounded-full bg-slate-800">
-                      <div className="h-full rounded-full bg-emerald-500" style={{ width: `${w}%` }} />
+                    <div className="h-3 flex-1 overflow-hidden rounded-full bg-zinc-800">
+                      <div className="h-full rounded-full bg-amber-500" style={{ width: `${w}%` }} />
                     </div>
-                    <div className="w-14 text-right text-xs tabular-nums text-slate-300">{pct(rate)}</div>
+                    <div className="w-14 text-right text-xs tabular-nums text-zinc-300">{pct(rate)}</div>
                   </div>
                 )
               })}
@@ -232,12 +232,12 @@ export default function TacticsPage() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search tactics..."
-            className="min-w-[200px] flex-1 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
+            className="min-w-[200px] flex-1 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-amber-500 focus:outline-none"
           />
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value as 'rate' | 'name')}
-            className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+            className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
           >
             <option value="rate">Sort by rate</option>
             <option value="name">Sort by name</option>
@@ -263,19 +263,19 @@ export default function TacticsPage() {
           ) : (
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
               {filtered.map((t) => (
-                <div key={t.id} className="flex flex-col rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+                <div key={t.id} className="flex flex-col rounded-xl border border-zinc-800 bg-zinc-950/40 p-4">
                   <div className="flex items-start justify-between gap-2">
                     <div>
                       <div className="text-sm font-semibold text-white">{t.name}</div>
-                      <div className="mt-0.5 font-mono text-xs text-slate-500">{t.key}</div>
+                      <div className="mt-0.5 font-mono text-xs text-zinc-500">{t.key}</div>
                     </div>
                     <Badge tone={rateTone(t.measured_recovery_rate)}>{pct(t.measured_recovery_rate)}</Badge>
                   </div>
-                  <p className="mt-2 flex-1 text-xs text-slate-400">{t.description || 'No description.'}</p>
+                  <p className="mt-2 flex-1 text-xs text-zinc-400">{t.description || 'No description.'}</p>
                   {t.config && Object.keys(t.config).length > 0 && (
-                    <div className="mt-3 rounded-lg border border-slate-800 bg-slate-950 p-2">
-                      <div className="mb-1 text-[10px] font-medium uppercase tracking-wide text-slate-600">Config</div>
-                      <pre className="overflow-x-auto text-[11px] leading-tight text-slate-400">
+                    <div className="mt-3 rounded-lg border border-zinc-800 bg-zinc-950 p-2">
+                      <div className="mb-1 text-[10px] font-medium uppercase tracking-wide text-zinc-600">Config</div>
+                      <pre className="overflow-x-auto text-[11px] leading-tight text-zinc-400">
                         {JSON.stringify(t.config, null, 2)}
                       </pre>
                     </div>
@@ -313,37 +313,37 @@ export default function TacticsPage() {
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Key</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Key</label>
               <input
                 value={form.key}
                 onChange={(e) => setForm({ ...form, key: e.target.value })}
                 disabled={Boolean(editing)}
                 placeholder="smart_retry"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none disabled:opacity-50"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none disabled:opacity-50"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Name</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Name</label>
               <input
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 placeholder="Smart Retry"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
               />
             </div>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Description</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Description</label>
             <textarea
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               rows={2}
               placeholder="What this tactic does"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
               Config (JSON)
             </label>
             <textarea
@@ -351,7 +351,7 @@ export default function TacticsPage() {
               onChange={(e) => setForm({ ...form, config: e.target.value })}
               rows={5}
               spellCheck={false}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-xs text-slate-200 focus:border-emerald-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 font-mono text-xs text-zinc-200 focus:border-amber-500 focus:outline-none"
             />
           </div>
           {formErr && <p className="text-sm text-red-400">{formErr}</p>}

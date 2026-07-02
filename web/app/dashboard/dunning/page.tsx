@@ -282,7 +282,7 @@ export default function DunningPage() {
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h1 className="text-xl font-semibold text-white">Dunning Sequences</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Build multi-step recovery outreach, assign decline codes, and preview rendered messages.
           </p>
         </div>
@@ -313,17 +313,17 @@ export default function DunningPage() {
                   onClick={() => selectSequence(s.id)}
                   className={`w-full rounded-xl border px-4 py-3 text-left transition-colors ${
                     active
-                      ? 'border-emerald-500/50 bg-emerald-500/10'
-                      : 'border-slate-800 bg-slate-900/60 hover:border-slate-700'
+                      ? 'border-amber-500/50 bg-amber-500/10'
+                      : 'border-zinc-800 bg-zinc-900/60 hover:border-zinc-700'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <span className="truncate font-medium text-slate-100">{s.name}</span>
+                    <span className="truncate font-medium text-zinc-100">{s.name}</span>
                     <Badge tone={s.is_active ? 'emerald' : 'slate'}>{s.is_active ? 'active' : 'paused'}</Badge>
                   </div>
                   <div className="mt-1 flex items-center gap-2">
                     <Badge tone={channelTone(s.channel)}>{s.channel}</Badge>
-                    <span className="text-xs text-slate-500">{(s.assigned_codes || []).length} code(s)</span>
+                    <span className="text-xs text-zinc-500">{(s.assigned_codes || []).length} code(s)</span>
                   </div>
                 </button>
               )
@@ -352,7 +352,7 @@ export default function DunningPage() {
                           </Badge>
                         ))}
                         {(detail.sequence.assigned_codes || []).length === 0 && (
-                          <span className="text-xs text-slate-500">No assigned codes</span>
+                          <span className="text-xs text-zinc-500">No assigned codes</span>
                         )}
                       </div>
                     </div>
@@ -389,21 +389,21 @@ export default function DunningPage() {
                     ) : (
                       <ol className="space-y-3">
                         {steps.map((st, i) => (
-                          <li key={st.id} className="relative rounded-lg border border-slate-800 bg-slate-950/40 p-4">
+                          <li key={st.id} className="relative rounded-lg border border-zinc-800 bg-zinc-950/40 p-4">
                             <div className="flex flex-wrap items-start justify-between gap-3">
                               <div className="flex items-start gap-3">
-                                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500/20 text-xs font-semibold text-emerald-400">
+                                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-amber-500/20 text-xs font-semibold text-amber-400">
                                   {st.step_order ?? i + 1}
                                 </div>
                                 <div>
                                   <div className="flex flex-wrap items-center gap-2">
                                     <Badge tone={channelTone(st.channel)}>{st.channel}</Badge>
-                                    <span className="text-xs text-slate-500">{delayLabel(st.delay_hours)}</span>
+                                    <span className="text-xs text-zinc-500">{delayLabel(st.delay_hours)}</span>
                                   </div>
-                                  <div className="mt-1.5 text-sm font-medium text-slate-100">
-                                    {st.subject || <span className="text-slate-500">(no subject)</span>}
+                                  <div className="mt-1.5 text-sm font-medium text-zinc-100">
+                                    {st.subject || <span className="text-zinc-500">(no subject)</span>}
                                   </div>
-                                  <p className="mt-1 line-clamp-2 whitespace-pre-wrap text-xs text-slate-400">
+                                  <p className="mt-1 line-clamp-2 whitespace-pre-wrap text-xs text-zinc-400">
                                     {st.body}
                                   </p>
                                 </div>
@@ -428,18 +428,18 @@ export default function DunningPage() {
                   <Card>
                     <CardHeader>
                       <h3 className="text-sm font-semibold text-white">Rendered preview</h3>
-                      <p className="mt-0.5 text-xs text-slate-500">Each step rendered with sample variables.</p>
+                      <p className="mt-0.5 text-xs text-zinc-500">Each step rendered with sample variables.</p>
                     </CardHeader>
                     <CardBody>
                       {preview.steps.length === 0 ? (
-                        <p className="text-sm text-slate-500">Nothing to preview.</p>
+                        <p className="text-sm text-zinc-500">Nothing to preview.</p>
                       ) : (
                         <div className="space-y-3">
                           {preview.steps.map((p, i) => (
-                            <div key={i} className="rounded-lg border border-slate-800 bg-slate-950/40 p-4">
-                              <div className="text-xs uppercase tracking-wide text-slate-500">Step {i + 1}</div>
-                              <div className="mt-1 text-sm font-semibold text-slate-100">{p.subject}</div>
-                              <pre className="mt-2 whitespace-pre-wrap break-words font-sans text-sm text-slate-300">
+                            <div key={i} className="rounded-lg border border-zinc-800 bg-zinc-950/40 p-4">
+                              <div className="text-xs uppercase tracking-wide text-zinc-500">Step {i + 1}</div>
+                              <div className="mt-1 text-sm font-semibold text-zinc-100">{p.subject}</div>
+                              <pre className="mt-2 whitespace-pre-wrap break-words font-sans text-sm text-zinc-300">
                                 {p.body}
                               </pre>
                             </div>
@@ -453,7 +453,7 @@ export default function DunningPage() {
             ) : (
               <Card>
                 <CardBody>
-                  <p className="text-sm text-slate-500">Select a sequence to view its steps.</p>
+                  <p className="text-sm text-zinc-500">Select a sequence to view its steps.</p>
                 </CardBody>
               </Card>
             )}
@@ -479,22 +479,22 @@ export default function DunningPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Name</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Name</label>
             <input
               value={seqName}
               onChange={(e) => setSeqName(e.target.value)}
               placeholder="Hard-decline recovery"
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:border-amber-500 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
               Default channel
             </label>
             <select
               value={seqChannel}
               onChange={(e) => setSeqChannel(e.target.value)}
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 focus:border-amber-500 focus:outline-none"
             >
               {CHANNELS.map((c) => (
                 <option key={c} value={c}>
@@ -504,22 +504,22 @@ export default function DunningPage() {
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
               Assigned decline codes (comma-separated)
             </label>
             <input
               value={seqCodes}
               onChange={(e) => setSeqCodes(e.target.value)}
               placeholder="insufficient_funds, expired_card"
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:border-amber-500 focus:outline-none"
             />
           </div>
-          <label className="flex items-center gap-2 text-sm text-slate-300">
+          <label className="flex items-center gap-2 text-sm text-zinc-300">
             <input
               type="checkbox"
               checked={seqActive}
               onChange={(e) => setSeqActive(e.target.checked)}
-              className="h-4 w-4 rounded border-slate-700 bg-slate-900 text-emerald-500 focus:ring-emerald-500"
+              className="h-4 w-4 rounded border-zinc-700 bg-zinc-900 text-amber-500 focus:ring-amber-500"
             />
             Active
           </label>
@@ -545,17 +545,17 @@ export default function DunningPage() {
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Order</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Order</label>
               <input
                 type="number"
                 min={1}
                 value={stepOrder}
                 onChange={(e) => setStepOrder(Number(e.target.value))}
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 focus:border-amber-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Delay (hours)
               </label>
               <input
@@ -563,16 +563,16 @@ export default function DunningPage() {
                 min={0}
                 value={stepDelay}
                 onChange={(e) => setStepDelay(Number(e.target.value))}
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 focus:border-amber-500 focus:outline-none"
               />
             </div>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Channel</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Channel</label>
             <select
               value={stepChannel}
               onChange={(e) => setStepChannel(e.target.value)}
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 focus:border-amber-500 focus:outline-none"
             >
               {CHANNELS.map((c) => (
                 <option key={c} value={c}>
@@ -582,16 +582,16 @@ export default function DunningPage() {
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Subject</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Subject</label>
             <input
               value={stepSubject}
               onChange={(e) => setStepSubject(e.target.value)}
               placeholder="Your payment didn't go through"
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:border-amber-500 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
               Body (supports variables like {'{{customer_name}}'})
             </label>
             <textarea
@@ -599,7 +599,7 @@ export default function DunningPage() {
               onChange={(e) => setStepBody(e.target.value)}
               rows={5}
               placeholder="Hi {{customer_name}}, we couldn't process your last payment of {{amount}}..."
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:border-amber-500 focus:outline-none"
             />
           </div>
         </div>

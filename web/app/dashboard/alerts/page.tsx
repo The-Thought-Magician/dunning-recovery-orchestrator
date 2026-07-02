@@ -304,7 +304,7 @@ export default function AlertsPage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold text-white">Alerts &amp; Watchlist</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Monitor recovery health, get notified when metrics cross thresholds, and keep an eye on high-value accounts.
           </p>
         </div>
@@ -327,12 +327,12 @@ export default function AlertsPage() {
         <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">{error}</div>
       )}
       {banner && (
-        <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-400">
+        <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-400">
           {banner}
         </div>
       )}
 
-      <div className="flex gap-1 border-b border-slate-800">
+      <div className="flex gap-1 border-b border-zinc-800">
         {([
           ['alerts', `Alerts${openAlerts.length ? ` (${openAlerts.length})` : ''}`],
           ['rules', `Rules (${rules.length})`],
@@ -343,8 +343,8 @@ export default function AlertsPage() {
             onClick={() => setTab(key)}
             className={`-mb-px border-b-2 px-4 py-2 text-sm font-medium transition-colors ${
               tab === key
-                ? 'border-emerald-500 text-white'
-                : 'border-transparent text-slate-400 hover:text-slate-200'
+                ? 'border-amber-500 text-white'
+                : 'border-transparent text-zinc-400 hover:text-zinc-200'
             }`}
           >
             {label}
@@ -360,12 +360,12 @@ export default function AlertsPage() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search alerts..."
-                className="w-56 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
+                className="w-56 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 placeholder-zinc-600 focus:border-amber-500 focus:outline-none"
               />
               <select
                 value={alertFilter}
                 onChange={(e) => setAlertFilter(e.target.value as typeof alertFilter)}
-                className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+                className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
               >
                 <option value="open">Open</option>
                 <option value="acked">Acknowledged</option>
@@ -412,9 +412,9 @@ export default function AlertsPage() {
                       <TD>
                         <Badge tone={severityTone(a.severity)}>{a.severity || 'info'}</Badge>
                       </TD>
-                      <TD className="font-medium text-slate-100">{a.message}</TD>
-                      <TD className="text-slate-400">{ruleName(a.rule_id)}</TD>
-                      <TD className="text-slate-500">{timeAgo(a.created_at)}</TD>
+                      <TD className="font-medium text-zinc-100">{a.message}</TD>
+                      <TD className="text-zinc-400">{ruleName(a.rule_id)}</TD>
+                      <TD className="text-zinc-500">{timeAgo(a.created_at)}</TD>
                       <TD className="text-right">
                         {a.acknowledged ? (
                           <Badge tone="emerald">Acknowledged</Badge>
@@ -468,11 +468,11 @@ export default function AlertsPage() {
                 <TBody>
                   {rules.map((r) => (
                     <TR key={r.id}>
-                      <TD className="font-medium text-slate-100">{r.name}</TD>
+                      <TD className="font-medium text-zinc-100">{r.name}</TD>
                       <TD>
                         <Badge tone="slate">{metricLabel(r.metric)}</Badge>
                       </TD>
-                      <TD className="text-right tabular-nums text-slate-200">{r.threshold}</TD>
+                      <TD className="text-right tabular-nums text-zinc-200">{r.threshold}</TD>
                       <TD>
                         <button onClick={() => toggleRule(r)} className="cursor-pointer">
                           <Badge tone={r.is_active !== false ? 'emerald' : 'slate'}>
@@ -528,15 +528,15 @@ export default function AlertsPage() {
                   {watchlist.map((w) => (
                     <TR key={w.id}>
                       <TD>
-                        <div className="font-medium text-slate-100">{w.account?.customer_name ?? 'Unknown account'}</div>
+                        <div className="font-medium text-zinc-100">{w.account?.customer_name ?? 'Unknown account'}</div>
                         {w.account?.customer_email && (
-                          <div className="text-xs text-slate-500">{w.account.customer_email}</div>
+                          <div className="text-xs text-zinc-500">{w.account.customer_email}</div>
                         )}
                       </TD>
-                      <TD className="text-slate-300">{w.account?.plan_name ?? '—'}</TD>
-                      <TD className="text-right tabular-nums text-slate-200">{money(w.account?.mrr_cents ?? 0)}</TD>
+                      <TD className="text-zinc-300">{w.account?.plan_name ?? '—'}</TD>
+                      <TD className="text-right tabular-nums text-zinc-200">{money(w.account?.mrr_cents ?? 0)}</TD>
                       <TD>{w.account?.status ? <Badge tone="slate">{w.account.status}</Badge> : '—'}</TD>
-                      <TD className="max-w-xs text-slate-400">{w.note || <span className="text-slate-600">—</span>}</TD>
+                      <TD className="max-w-xs text-zinc-400">{w.note || <span className="text-zinc-600">—</span>}</TD>
                       <TD className="text-right">
                         <div className="flex justify-end gap-2">
                           <Button size="sm" variant="ghost" onClick={() => openNote(w)}>
@@ -578,20 +578,20 @@ export default function AlertsPage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Name</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Name</label>
             <input
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder="Recovery rate below target"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-amber-500 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Metric</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Metric</label>
             <select
               value={form.metric}
               onChange={(e) => setForm({ ...form, metric: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
             >
               {METRICS.map((m) => (
                 <option key={m.value} value={m.value}>
@@ -601,22 +601,22 @@ export default function AlertsPage() {
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Threshold</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Threshold</label>
             <input
               type="number"
               value={form.threshold}
               onChange={(e) => setForm({ ...form, threshold: e.target.value })}
               placeholder="e.g. 50"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-amber-500 focus:outline-none"
             />
-            <p className="mt-1 text-xs text-slate-600">An alert triggers when the metric crosses this value.</p>
+            <p className="mt-1 text-xs text-zinc-600">An alert triggers when the metric crosses this value.</p>
           </div>
-          <label className="flex items-center gap-2 text-sm text-slate-300">
+          <label className="flex items-center gap-2 text-sm text-zinc-300">
             <input
               type="checkbox"
               checked={form.is_active}
               onChange={(e) => setForm({ ...form, is_active: e.target.checked })}
-              className="h-4 w-4 accent-emerald-500"
+              className="h-4 w-4 accent-amber-500"
             />
             Active
           </label>
@@ -639,13 +639,13 @@ export default function AlertsPage() {
         }
       >
         <div className="space-y-2">
-          <div className="text-sm text-slate-300">{editNote?.account?.customer_name ?? 'Account'}</div>
+          <div className="text-sm text-zinc-300">{editNote?.account?.customer_name ?? 'Account'}</div>
           <textarea
             value={noteDraft}
             onChange={(e) => setNoteDraft(e.target.value)}
             rows={4}
             placeholder="Why is this account on the watchlist?"
-            className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
+            className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-amber-500 focus:outline-none"
           />
         </div>
       </Modal>

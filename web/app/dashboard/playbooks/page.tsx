@@ -184,7 +184,7 @@ export default function PlaybooksPage() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-xl font-semibold text-white">Recovery Playbooks</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Pre-built and custom configurations of schedules, tactics, and dunning. Apply one to set up your workspace fast.
           </p>
         </div>
@@ -202,9 +202,9 @@ export default function PlaybooksPage() {
         <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">{error}</div>
       )}
       {notice && (
-        <div className="flex items-center justify-between rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-300">
+        <div className="flex items-center justify-between rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-300">
           <span>{notice}</span>
-          <button onClick={() => setNotice(null)} className="text-emerald-400 hover:text-emerald-200">
+          <button onClick={() => setNotice(null)} className="text-amber-400 hover:text-amber-200">
             ✕
           </button>
         </div>
@@ -230,12 +230,12 @@ export default function PlaybooksPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search..."
-              className="w-44 rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-1.5 text-sm text-slate-200 placeholder:text-slate-600 focus:border-emerald-500/60 focus:outline-none"
+              className="w-44 rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-1.5 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-amber-500/60 focus:outline-none"
             />
             <select
               value={verticalFilter}
               onChange={(e) => setVerticalFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-1.5 text-sm text-slate-200 focus:border-emerald-500/60 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-1.5 text-sm text-zinc-200 focus:border-amber-500/60 focus:outline-none"
             >
               <option value="">All verticals</option>
               {VERTICALS.map((v) => (
@@ -247,7 +247,7 @@ export default function PlaybooksPage() {
             <select
               value={showTemplates}
               onChange={(e) => setShowTemplates(e.target.value as 'all' | 'templates' | 'custom')}
-              className="rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-1.5 text-sm text-slate-200 focus:border-emerald-500/60 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-1.5 text-sm text-zinc-200 focus:border-amber-500/60 focus:outline-none"
             >
               <option value="all">All</option>
               <option value="templates">Templates only</option>
@@ -280,11 +280,11 @@ export default function PlaybooksPage() {
                 return (
                   <div
                     key={p.id}
-                    className="flex flex-col rounded-xl border border-slate-800 bg-slate-950/40 p-4 transition-colors hover:border-slate-700"
+                    className="flex flex-col rounded-xl border border-zinc-800 bg-zinc-950/40 p-4 transition-colors hover:border-zinc-700"
                   >
                     <div className="flex items-start justify-between gap-2">
                       <button onClick={() => openDetail(p)} className="text-left">
-                        <h3 className="font-semibold text-slate-100 hover:text-emerald-300">{p.name}</h3>
+                        <h3 className="font-semibold text-zinc-100 hover:text-amber-300">{p.name}</h3>
                       </button>
                       {p.is_template ? <Badge tone="violet">Template</Badge> : <Badge tone="slate">Custom</Badge>}
                     </div>
@@ -297,17 +297,17 @@ export default function PlaybooksPage() {
                           {keys.slice(0, 5).map((k) => (
                             <span
                               key={k}
-                              className="rounded-md border border-slate-800 bg-slate-900 px-2 py-0.5 font-mono text-[11px] text-slate-400"
+                              className="rounded-md border border-zinc-800 bg-zinc-900 px-2 py-0.5 font-mono text-[11px] text-zinc-400"
                             >
                               {k}
                             </span>
                           ))}
                           {keys.length > 5 && (
-                            <span className="text-[11px] text-slate-600">+{keys.length - 5} more</span>
+                            <span className="text-[11px] text-zinc-600">+{keys.length - 5} more</span>
                           )}
                         </div>
                       ) : (
-                        <p className="text-xs text-slate-600">No config keys</p>
+                        <p className="text-xs text-zinc-600">No config keys</p>
                       )}
                     </div>
                     <div className="mt-4 flex items-center gap-2">
@@ -361,20 +361,20 @@ export default function PlaybooksPage() {
         <div className="space-y-4">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <label className="block">
-              <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Name</span>
+              <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Name</span>
               <input
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 placeholder="High-velocity SaaS recovery"
-                className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-emerald-500/60 focus:outline-none"
+                className="mt-1 w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-amber-500/60 focus:outline-none"
               />
             </label>
             <label className="block">
-              <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Vertical</span>
+              <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Vertical</span>
               <select
                 value={form.vertical}
                 onChange={(e) => setForm({ ...form, vertical: e.target.value })}
-                className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500/60 focus:outline-none"
+                className="mt-1 w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500/60 focus:outline-none"
               >
                 {VERTICALS.map((v) => (
                   <option key={v} value={v}>
@@ -385,15 +385,15 @@ export default function PlaybooksPage() {
             </label>
           </div>
           <label className="block">
-            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Config (JSON)</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Config (JSON)</span>
             <textarea
               value={form.config}
               onChange={(e) => setForm({ ...form, config: e.target.value })}
               rows={10}
               spellCheck={false}
-              className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 font-mono text-xs text-slate-200 placeholder:text-slate-600 focus:border-emerald-500/60 focus:outline-none"
+              className="mt-1 w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 font-mono text-xs text-zinc-200 placeholder:text-zinc-600 focus:border-amber-500/60 focus:outline-none"
             />
-            <span className="mt-1 block text-xs text-slate-600">
+            <span className="mt-1 block text-xs text-zinc-600">
               Settings applied to your workspace (retry schedule, dunning channel, grace days, tactics, etc.).
             </span>
           </label>
@@ -435,8 +435,8 @@ export default function PlaybooksPage() {
               {detail.is_template ? <Badge tone="violet">Template</Badge> : <Badge tone="slate">Custom</Badge>}
             </div>
             <div>
-              <div className="mb-1 text-xs font-medium uppercase tracking-wide text-slate-500">Configuration</div>
-              <pre className="max-h-80 overflow-auto rounded-lg border border-slate-800 bg-slate-950/60 p-4 font-mono text-xs text-slate-300">
+              <div className="mb-1 text-xs font-medium uppercase tracking-wide text-zinc-500">Configuration</div>
+              <pre className="max-h-80 overflow-auto rounded-lg border border-zinc-800 bg-zinc-950/60 p-4 font-mono text-xs text-zinc-300">
                 {JSON.stringify(detail.config ?? {}, null, 2)}
               </pre>
             </div>
@@ -465,7 +465,7 @@ export default function PlaybooksPage() {
           </>
         }
       >
-        <p className="text-sm text-slate-300">
+        <p className="text-sm text-zinc-300">
           Delete <span className="font-semibold text-white">{confirmDelete?.name}</span>? This cannot be undone.
         </p>
         {actionError && <p className="mt-3 text-sm text-red-400">{actionError}</p>}

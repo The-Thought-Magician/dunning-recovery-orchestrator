@@ -147,7 +147,7 @@ export default function ActivityPage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold text-white">Activity Log</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Every mutation across your recovery workspace, in one auditable timeline.
           </p>
         </div>
@@ -173,12 +173,12 @@ export default function ActivityPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search events..."
-              className="w-56 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
+              className="w-56 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 placeholder-zinc-600 focus:border-amber-500 focus:outline-none"
             />
             <select
               value={entityType}
               onChange={(e) => setEntityType(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
             >
               <option value="">All entities</option>
               {entityTypes.map((t) => (
@@ -190,7 +190,7 @@ export default function ActivityPage() {
             <select
               value={actionFilter}
               onChange={(e) => setActionFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
             >
               <option value="">All actions</option>
               {actions.map((a) => (
@@ -205,7 +205,7 @@ export default function ActivityPage() {
               </Button>
             )}
           </div>
-          <span className="text-xs text-slate-500">
+          <span className="text-xs text-zinc-500">
             {filtered.length} {filtered.length === 1 ? 'event' : 'events'}
           </span>
         </CardHeader>
@@ -246,20 +246,20 @@ export default function ActivityPage() {
                   return (
                     <Fragment key={e.id}>
                       <TR>
-                        <TD className="whitespace-nowrap text-slate-400" title={fmtFull(e.created_at)}>
+                        <TD className="whitespace-nowrap text-zinc-400" title={fmtFull(e.created_at)}>
                           {timeAgo(e.created_at)}
                         </TD>
                         <TD>
                           <Badge tone={actionTone(e.action)}>{prettify(e.action)}</Badge>
                         </TD>
-                        <TD className="text-slate-200">{prettify(e.entity_type)}</TD>
+                        <TD className="text-zinc-200">{prettify(e.entity_type)}</TD>
                         <TD>
                           {e.entity_id ? (
-                            <code className="rounded bg-slate-800 px-1.5 py-0.5 font-mono text-xs text-slate-400">
+                            <code className="rounded bg-zinc-800 px-1.5 py-0.5 font-mono text-xs text-zinc-400">
                               {e.entity_id.length > 14 ? `${e.entity_id.slice(0, 8)}…${e.entity_id.slice(-4)}` : e.entity_id}
                             </code>
                           ) : (
-                            <span className="text-xs text-slate-600">—</span>
+                            <span className="text-xs text-zinc-600">—</span>
                           )}
                         </TD>
                         <TD className="text-right">
@@ -268,14 +268,14 @@ export default function ActivityPage() {
                               {isOpen ? 'Hide' : 'View'}
                             </Button>
                           ) : (
-                            <span className="text-xs text-slate-600">—</span>
+                            <span className="text-xs text-zinc-600">—</span>
                           )}
                         </TD>
                       </TR>
                       {hasMeta && isOpen && (
                         <TR className="hover:bg-transparent">
-                          <TD colSpan={5} className="bg-slate-950/50">
-                            <pre className="overflow-x-auto rounded-lg border border-slate-800 bg-slate-950 p-3 font-mono text-xs text-slate-400">
+                          <TD colSpan={5} className="bg-zinc-950/50">
+                            <pre className="overflow-x-auto rounded-lg border border-zinc-800 bg-zinc-950 p-3 font-mono text-xs text-zinc-400">
                               {JSON.stringify(e.metadata, null, 2)}
                             </pre>
                           </TD>

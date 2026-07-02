@@ -193,7 +193,7 @@ export default function PortalPage() {
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h1 className="text-xl font-semibold text-white">Self-Serve Update Portal</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Configure the customer-facing card-update page and track session conversion.
           </p>
         </div>
@@ -206,7 +206,7 @@ export default function PortalPage() {
         </div>
       )}
       {notice && (
-        <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-400">
+        <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-400">
           {notice}
         </div>
       )}
@@ -228,18 +228,18 @@ export default function PortalPage() {
           <CardBody className="space-y-4">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
-                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                   Brand name
                 </label>
                 <input
                   value={brandName}
                   onChange={(e) => setBrandName(e.target.value)}
                   placeholder="Acme Inc."
-                  className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none"
+                  className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:border-amber-500 focus:outline-none"
                 />
               </div>
               <div>
-                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                   Primary color
                 </label>
                 <div className="flex items-center gap-2">
@@ -247,40 +247,40 @@ export default function PortalPage() {
                     type="color"
                     value={primaryColor}
                     onChange={(e) => setPrimaryColor(e.target.value)}
-                    className="h-9 w-12 cursor-pointer rounded border border-slate-700 bg-slate-900"
+                    className="h-9 w-12 cursor-pointer rounded border border-zinc-700 bg-zinc-900"
                   />
                   <input
                     value={primaryColor}
                     onChange={(e) => setPrimaryColor(e.target.value)}
-                    className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
+                    className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 focus:border-amber-500 focus:outline-none"
                   />
                 </div>
               </div>
             </div>
 
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Headline</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Headline</label>
               <input
                 value={headline}
                 onChange={(e) => setHeadline(e.target.value)}
                 placeholder="Update your payment method"
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:border-amber-500 focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Body copy</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Body copy</label>
               <textarea
                 value={bodyCopy}
                 onChange={(e) => setBodyCopy(e.target.value)}
                 rows={3}
                 placeholder="Your last payment didn't go through. Update your card to keep your subscription active."
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:border-amber-500 focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="mb-2 block text-xs font-medium uppercase tracking-wide text-slate-500">
+              <label className="mb-2 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Collected fields
               </label>
               <div className="flex flex-wrap gap-2">
@@ -293,8 +293,8 @@ export default function PortalPage() {
                       onClick={() => toggleField(f)}
                       className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
                         on
-                          ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-400'
-                          : 'border-slate-700 bg-slate-900 text-slate-400 hover:border-slate-600'
+                          ? 'border-amber-500/40 bg-amber-500/10 text-amber-400'
+                          : 'border-zinc-700 bg-zinc-900 text-zinc-400 hover:border-zinc-600'
                       }`}
                     >
                       {f.replace('_', ' ')}
@@ -304,12 +304,12 @@ export default function PortalPage() {
               </div>
             </div>
 
-            <label className="flex items-center gap-2 text-sm text-slate-300">
+            <label className="flex items-center gap-2 text-sm text-zinc-300">
               <input
                 type="checkbox"
                 checked={isActive}
                 onChange={(e) => setIsActive(e.target.checked)}
-                className="h-4 w-4 rounded border-slate-700 bg-slate-900 text-emerald-500 focus:ring-emerald-500"
+                className="h-4 w-4 rounded border-zinc-700 bg-zinc-900 text-amber-500 focus:ring-amber-500"
               />
               Portal active
             </label>
@@ -328,19 +328,19 @@ export default function PortalPage() {
             <h2 className="text-sm font-semibold text-white">Preview</h2>
           </CardHeader>
           <CardBody>
-            <div className="rounded-xl border border-slate-800 bg-slate-950 p-5">
+            <div className="rounded-xl border border-zinc-800 bg-zinc-950 p-5">
               <div className="text-sm font-semibold" style={{ color: primaryColor }}>
                 {brandName || 'Your brand'}
               </div>
               <h3 className="mt-3 text-lg font-semibold text-white">{headline || 'Update your payment method'}</h3>
-              <p className="mt-1 text-sm text-slate-400">
+              <p className="mt-1 text-sm text-zinc-400">
                 {bodyCopy || 'Update your card details to keep your subscription active.'}
               </p>
               <div className="mt-4 space-y-2">
                 {(fields.length ? fields : ['card_number', 'expiry', 'cvc']).map((f) => (
                   <div
                     key={f}
-                    className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-xs capitalize text-slate-500"
+                    className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-xs capitalize text-zinc-500"
                   >
                     {f.replace('_', ' ')}
                   </div>
@@ -348,7 +348,7 @@ export default function PortalPage() {
               </div>
               <button
                 type="button"
-                className="mt-4 w-full rounded-lg px-3 py-2 text-sm font-semibold text-slate-950"
+                className="mt-4 w-full rounded-lg px-3 py-2 text-sm font-semibold text-zinc-950"
                 style={{ backgroundColor: primaryColor }}
                 disabled
               >
@@ -366,7 +366,7 @@ export default function PortalPage() {
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
+            className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-100 focus:border-amber-500 focus:outline-none"
           >
             <option value="all">All statuses</option>
             {STATUS_OPTIONS.map((s) => (
@@ -409,10 +409,10 @@ export default function PortalPage() {
               <TBody>
                 {filteredSessions.map((s) => (
                   <TR key={s.id}>
-                    <TD className="font-medium text-slate-100">
+                    <TD className="font-medium text-zinc-100">
                       {s.customer_name || s.subscription_account_id}
                     </TD>
-                    <TD className="font-mono text-xs text-slate-500">{(s.token || '').slice(0, 12)}…</TD>
+                    <TD className="font-mono text-xs text-zinc-500">{(s.token || '').slice(0, 12)}…</TD>
                     <TD>
                       <Badge tone={statusTone(s.status)}>{s.status}</Badge>
                     </TD>
@@ -459,18 +459,18 @@ export default function PortalPage() {
         }
       >
         <div className="space-y-4">
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-zinc-400">
             Generate a tokenized self-serve update link for a subscription account.
           </p>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
               Subscription account ID
             </label>
             <input
               value={mintAccountId}
               onChange={(e) => setMintAccountId(e.target.value)}
               placeholder="acct_..."
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:border-amber-500 focus:outline-none"
             />
           </div>
         </div>

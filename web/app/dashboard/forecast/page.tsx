@@ -133,7 +133,7 @@ export default function ForecastPage() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-xl font-semibold text-white">Recovery Forecast</h1>
-          <p className="mt-1 text-sm text-slate-400">Projected recovered revenue versus actual outcomes per period.</p>
+          <p className="mt-1 text-sm text-zinc-400">Projected recovered revenue versus actual outcomes per period.</p>
         </div>
         <div className="flex gap-2">
           <Button variant="secondary" size="sm" onClick={load}>
@@ -207,16 +207,16 @@ export default function ForecastPage() {
                   const variance = hasActual ? (f.actual_recovered_cents as number) - f.projected_recovered_cents : null
                   return (
                     <TR key={f.id}>
-                      <TD className="font-medium text-slate-200">{f.period_label}</TD>
-                      <TD className="text-right tabular-nums text-slate-500">{fmtMoney(f.low_cents)}</TD>
-                      <TD className="text-right tabular-nums text-emerald-300">{fmtMoney(f.projected_recovered_cents)}</TD>
-                      <TD className="text-right tabular-nums text-slate-500">{fmtMoney(f.high_cents)}</TD>
+                      <TD className="font-medium text-zinc-200">{f.period_label}</TD>
+                      <TD className="text-right tabular-nums text-zinc-500">{fmtMoney(f.low_cents)}</TD>
+                      <TD className="text-right tabular-nums text-amber-300">{fmtMoney(f.projected_recovered_cents)}</TD>
+                      <TD className="text-right tabular-nums text-zinc-500">{fmtMoney(f.high_cents)}</TD>
                       <TD className="text-right tabular-nums">{hasActual ? fmtMoney(f.actual_recovered_cents) : '—'}</TD>
                       <TD className="text-right tabular-nums">
                         {variance === null ? (
                           '—'
                         ) : (
-                          <span className={variance >= 0 ? 'text-emerald-400' : 'text-red-400'}>
+                          <span className={variance >= 0 ? 'text-amber-400' : 'text-red-400'}>
                             {variance >= 0 ? '+' : ''}
                             {fmtMoney(variance)}
                           </span>
@@ -256,16 +256,16 @@ export default function ForecastPage() {
         }
       >
         <div className="space-y-4">
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-zinc-400">
             Projects recovered revenue for the named period from your current schedules, tactics, and decline curves.
           </p>
           <label className="block">
-            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Period Label</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Period Label</span>
             <input
               value={periodLabel}
               onChange={(e) => setPeriodLabel(e.target.value)}
               placeholder="e.g. Jul 2026"
-              className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-emerald-500/60 focus:outline-none"
+              className="mt-1 w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-amber-500/60 focus:outline-none"
             />
           </label>
           {actionError && <p className="text-sm text-red-400">{actionError}</p>}
@@ -290,12 +290,12 @@ export default function ForecastPage() {
       >
         <div className="space-y-4">
           {actualTarget && (
-            <div className="rounded-lg border border-slate-800 bg-slate-950/50 px-4 py-3 text-sm">
-              <div className="flex justify-between text-slate-400">
+            <div className="rounded-lg border border-zinc-800 bg-zinc-950/50 px-4 py-3 text-sm">
+              <div className="flex justify-between text-zinc-400">
                 <span>Projected</span>
-                <span className="tabular-nums text-emerald-300">{fmtMoney(actualTarget.projected_recovered_cents)}</span>
+                <span className="tabular-nums text-amber-300">{fmtMoney(actualTarget.projected_recovered_cents)}</span>
               </div>
-              <div className="mt-1 flex justify-between text-slate-500">
+              <div className="mt-1 flex justify-between text-zinc-500">
                 <span>Range</span>
                 <span className="tabular-nums">
                   {fmtMoney(actualTarget.low_cents)} – {fmtMoney(actualTarget.high_cents)}
@@ -304,7 +304,7 @@ export default function ForecastPage() {
             </div>
           )}
           <label className="block">
-            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Actual Recovered (USD)</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Actual Recovered (USD)</span>
             <input
               type="number"
               min="0"
@@ -312,7 +312,7 @@ export default function ForecastPage() {
               value={actualValue}
               onChange={(e) => setActualValue(e.target.value)}
               placeholder="0.00"
-              className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-emerald-500/60 focus:outline-none"
+              className="mt-1 w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-amber-500/60 focus:outline-none"
             />
           </label>
           {actionError && <p className="text-sm text-red-400">{actionError}</p>}
@@ -391,16 +391,16 @@ function ForecastChart({ forecasts }: { forecasts: Forecast[] }) {
       </div>
       <div className="flex flex-wrap gap-4">
         <div className="flex items-center gap-1.5">
-          <span className="h-2.5 w-4 rounded-sm bg-emerald-400" />
-          <span className="text-xs text-slate-400">Projected</span>
+          <span className="h-2.5 w-4 rounded-sm bg-amber-400" />
+          <span className="text-xs text-zinc-400">Projected</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="h-2.5 w-4 rounded-sm bg-sky-400" />
-          <span className="text-xs text-slate-400">Actual</span>
+          <span className="text-xs text-zinc-400">Actual</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="h-2.5 w-4 rounded-sm bg-emerald-500/20" />
-          <span className="text-xs text-slate-400">Confidence band (low–high)</span>
+          <span className="h-2.5 w-4 rounded-sm bg-amber-500/20" />
+          <span className="text-xs text-zinc-400">Confidence band (low–high)</span>
         </div>
       </div>
     </div>

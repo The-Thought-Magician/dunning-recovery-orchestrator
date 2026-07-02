@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { PageSpinner, Spinner } from '@/components/ui/Spinner'
 import { EmptyState } from '@/components/ui/EmptyState'
 import { Table, THead, TBody, TR, TH, TD } from '@/components/ui/Table'
+import { RightRail } from '@/components/RightRail'
 
 interface FailedCharge {
   id: string
@@ -184,21 +185,23 @@ export default function InboxPage() {
   const totalAtStake = useMemo(() => visible.reduce((s, c) => s + (c.amount_cents || 0), 0), [visible])
 
   return (
-    <div className="mx-auto max-w-7xl space-y-6">
+    <div className="mx-auto max-w-[1600px]">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
+      <div className="min-w-0 space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-white">Failed-charge inbox</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Triage failed charges, assign recovery tactics, and resolve outcomes inline.
           </p>
         </div>
         <div className="flex gap-6 text-right">
           <div>
-            <div className="text-xs uppercase tracking-wide text-slate-500">Open</div>
+            <div className="text-xs uppercase tracking-wide text-zinc-500">Open</div>
             <div className="text-xl font-semibold text-amber-400">{totalOpen}</div>
           </div>
           <div>
-            <div className="text-xs uppercase tracking-wide text-slate-500">At stake</div>
+            <div className="text-xs uppercase tracking-wide text-zinc-500">At stake</div>
             <div className="text-xl font-semibold text-white">{fmtMoney(totalAtStake)}</div>
           </div>
         </div>
@@ -209,20 +212,20 @@ export default function InboxPage() {
         <CardBody>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-6">
             <div className="lg:col-span-2">
-              <label className="mb-1 block text-[11px] uppercase tracking-wide text-slate-500">Search</label>
+              <label className="mb-1 block text-[11px] uppercase tracking-wide text-zinc-500">Search</label>
               <input
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 placeholder="Customer, code, plan…"
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-amber-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-[11px] uppercase tracking-wide text-slate-500">Status</label>
+              <label className="mb-1 block text-[11px] uppercase tracking-wide text-zinc-500">Status</label>
               <select
                 value={fStatus}
                 onChange={(e) => setFStatus(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 focus:border-amber-500 focus:outline-none"
               >
                 <option value="">All</option>
                 {STATUS_OPTIONS.map((s) => (
@@ -233,44 +236,44 @@ export default function InboxPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-[11px] uppercase tracking-wide text-slate-500">Decline code</label>
+              <label className="mb-1 block text-[11px] uppercase tracking-wide text-zinc-500">Decline code</label>
               <input
                 value={fDeclineCode}
                 onChange={(e) => setFDeclineCode(e.target.value)}
                 placeholder="e.g. insufficient_funds"
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-amber-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-[11px] uppercase tracking-wide text-slate-500">Plan</label>
+              <label className="mb-1 block text-[11px] uppercase tracking-wide text-zinc-500">Plan</label>
               <input
                 value={fPlan}
                 onChange={(e) => setFPlan(e.target.value)}
                 placeholder="Plan name"
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-amber-500 focus:outline-none"
               />
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="mb-1 block text-[11px] uppercase tracking-wide text-slate-500">Min $</label>
+                <label className="mb-1 block text-[11px] uppercase tracking-wide text-zinc-500">Min $</label>
                 <input
                   type="number"
                   min="0"
                   value={fMinAmount}
                   onChange={(e) => setFMinAmount(e.target.value)}
                   placeholder="0"
-                  className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 focus:border-emerald-500 focus:outline-none"
+                  className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-amber-500 focus:outline-none"
                 />
               </div>
               <div>
-                <label className="mb-1 block text-[11px] uppercase tracking-wide text-slate-500">Retries</label>
+                <label className="mb-1 block text-[11px] uppercase tracking-wide text-zinc-500">Retries</label>
                 <input
                   type="number"
                   min="0"
                   value={fRetryCount}
                   onChange={(e) => setFRetryCount(e.target.value)}
                   placeholder="≥"
-                  className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 focus:border-emerald-500 focus:outline-none"
+                  className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-amber-500 focus:outline-none"
                 />
               </div>
             </div>
@@ -350,31 +353,31 @@ export default function InboxPage() {
                     <TD>
                       <Link
                         href={`/dashboard/charges/${c.id}`}
-                        className="font-medium text-slate-100 hover:text-emerald-400"
+                        className="font-medium text-zinc-100 hover:text-amber-400"
                       >
                         {c.customer_name || c.external_id || c.id.slice(0, 8)}
                       </Link>
-                      {c.geography && <div className="text-xs text-slate-500">{c.geography}</div>}
+                      {c.geography && <div className="text-xs text-zinc-500">{c.geography}</div>}
                     </TD>
                     <TD className="font-medium text-white">{fmtMoney(c.amount_cents, c.currency)}</TD>
                     <TD>
                       {c.decline_code ? (
                         <Badge tone="slate">{c.decline_code}</Badge>
                       ) : (
-                        <span className="text-slate-600">{c.raw_decline_code || '—'}</span>
+                        <span className="text-zinc-600">{c.raw_decline_code || '—'}</span>
                       )}
                     </TD>
                     <TD>
-                      <div className="text-slate-300">{c.plan_name || '—'}</div>
-                      {c.card_brand && <div className="text-xs capitalize text-slate-500">{c.card_brand}</div>}
+                      <div className="text-zinc-300">{c.plan_name || '—'}</div>
+                      {c.card_brand && <div className="text-xs capitalize text-zinc-500">{c.card_brand}</div>}
                     </TD>
-                    <TD className="text-slate-400">{c.retry_count}</TD>
+                    <TD className="text-zinc-400">{c.retry_count}</TD>
                     <TD>
                       <select
                         value={c.assigned_tactic ?? ''}
                         disabled={busy}
                         onChange={(e) => onTactic(c.id, e.target.value)}
-                        className="w-full rounded-md border border-slate-700 bg-slate-900 px-2 py-1 text-xs text-slate-100 focus:border-emerald-500 focus:outline-none disabled:opacity-50"
+                        className="w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 py-1 text-xs text-zinc-100 focus:border-amber-500 focus:outline-none disabled:opacity-50"
                       >
                         <option value="">Unassigned</option>
                         {tactics.map((t) => (
@@ -387,7 +390,7 @@ export default function InboxPage() {
                     <TD>
                       <Badge tone={statusTone(c.status)}>{c.status.replace('_', ' ')}</Badge>
                     </TD>
-                    <TD className="text-xs text-slate-500">{fmtDate(c.failed_at)}</TD>
+                    <TD className="text-xs text-zinc-500">{fmtDate(c.failed_at)}</TD>
                     <TD>
                       <div className="flex items-center justify-end gap-1.5">
                         {busy && <Spinner className="!gap-0" />}
@@ -397,7 +400,7 @@ export default function InboxPage() {
                           onChange={(e) => {
                             if (e.target.value) onStatus(c.id, e.target.value)
                           }}
-                          className="rounded-md border border-slate-700 bg-slate-900 px-2 py-1 text-xs text-slate-100 focus:border-emerald-500 focus:outline-none disabled:opacity-50"
+                          className="rounded-md border border-zinc-700 bg-zinc-900 px-2 py-1 text-xs text-zinc-100 focus:border-amber-500 focus:outline-none disabled:opacity-50"
                         >
                           <option value="">Resolve…</option>
                           {SETTABLE_STATUS.map((s) => (
@@ -415,6 +418,12 @@ export default function InboxPage() {
           </Table>
         </Card>
       )}
+      </div>
+
+        <aside className="lg:sticky lg:top-20 lg:self-start">
+          <RightRail />
+        </aside>
+      </div>
     </div>
   )
 }

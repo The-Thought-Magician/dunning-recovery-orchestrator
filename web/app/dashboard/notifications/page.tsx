@@ -145,7 +145,7 @@ export default function NotificationsPage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold text-white">Notifications</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Recovery alerts, period closes, and workspace events delivered to you.
           </p>
         </div>
@@ -166,17 +166,17 @@ export default function NotificationsPage() {
 
       <Card>
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-1 rounded-lg border border-slate-800 bg-slate-950 p-1">
+          <div className="flex items-center gap-1 rounded-lg border border-zinc-800 bg-zinc-950 p-1">
             {tabs.map((t) => (
               <button
                 key={t.key}
                 onClick={() => setView(t.key)}
                 className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
-                  view === t.key ? 'bg-emerald-500 text-slate-950' : 'text-slate-400 hover:text-white'
+                  view === t.key ? 'bg-amber-500 text-zinc-950' : 'text-zinc-400 hover:text-white'
                 }`}
               >
                 {t.label}
-                <span className={`ml-1.5 text-xs ${view === t.key ? 'text-slate-800' : 'text-slate-600'}`}>
+                <span className={`ml-1.5 text-xs ${view === t.key ? 'text-zinc-800' : 'text-zinc-600'}`}>
                   {t.count}
                 </span>
               </button>
@@ -207,29 +207,29 @@ export default function NotificationsPage() {
               />
             </div>
           ) : (
-            <ul className="divide-y divide-slate-800/70">
+            <ul className="divide-y divide-zinc-800/70">
               {filtered.map((n) => (
                 <li
                   key={n.id}
                   className={`flex items-start gap-3 px-5 py-4 transition-colors ${
-                    n.read ? 'opacity-70 hover:bg-slate-800/20' : 'bg-emerald-500/[0.03] hover:bg-slate-800/30'
+                    n.read ? 'opacity-70 hover:bg-zinc-800/20' : 'bg-amber-500/[0.03] hover:bg-zinc-800/30'
                   }`}
                 >
                   <span
                     className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${
-                      n.read ? 'bg-slate-700' : 'bg-emerald-400'
+                      n.read ? 'bg-zinc-700' : 'bg-amber-400'
                     }`}
                     aria-hidden
                   />
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className={`text-sm font-medium ${n.read ? 'text-slate-300' : 'text-white'}`}>
+                      <span className={`text-sm font-medium ${n.read ? 'text-zinc-300' : 'text-white'}`}>
                         {n.title}
                       </span>
                       {n.kind && <Badge tone={kindTone(n.kind)}>{n.kind}</Badge>}
-                      <span className="text-xs text-slate-600">{timeAgo(n.created_at)}</span>
+                      <span className="text-xs text-zinc-600">{timeAgo(n.created_at)}</span>
                     </div>
-                    {n.body && <p className="mt-1 text-sm text-slate-400">{n.body}</p>}
+                    {n.body && <p className="mt-1 text-sm text-zinc-400">{n.body}</p>}
                   </div>
                   {!n.read && (
                     <Button

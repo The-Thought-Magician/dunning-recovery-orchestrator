@@ -60,7 +60,7 @@ function normalizeCurve(curve: RetrySimulation['curve']): CurvePoint[] {
 
 function RecoveryCurve({ curve }: { curve: CurvePoint[] }) {
   if (curve.length === 0) {
-    return <p className="py-6 text-center text-sm text-slate-500">No curve data for this run.</p>
+    return <p className="py-6 text-center text-sm text-zinc-500">No curve data for this run.</p>
   }
   const W = 600
   const H = 180
@@ -104,7 +104,7 @@ function RecoveryCurve({ curve }: { curve: CurvePoint[] }) {
           </linearGradient>
         </defs>
       </svg>
-      <div className="mt-1 flex justify-between text-[10px] text-slate-500">
+      <div className="mt-1 flex justify-between text-[10px] text-zinc-500">
         <span>Attempt 1</span>
         <span>Cumulative recovery rate (peak {pct(maxRate / 100)})</span>
         <span>Attempt {n}</span>
@@ -254,7 +254,7 @@ export default function SimulatorPage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold text-white">Retry Simulator</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Run retry simulations against your open failed charges, inspect the recovery curve, and
             compare schedules head-to-head.
           </p>
@@ -332,7 +332,7 @@ export default function SimulatorPage() {
                     <RecoveryCurve curve={normalizeCurve(selected.curve)} />
                   </>
                 ) : (
-                  <p className="py-6 text-center text-sm text-slate-500">
+                  <p className="py-6 text-center text-sm text-zinc-500">
                     Select a simulation to view its curve.
                   </p>
                 )}
@@ -354,7 +354,7 @@ export default function SimulatorPage() {
                 </div>
               </CardHeader>
               <CardBody>
-                <p className="mb-3 text-xs text-slate-500">
+                <p className="mb-3 text-xs text-zinc-500">
                   Tick simulations in the table, then compare their underlying schedules.
                 </p>
                 {compareError && (
@@ -375,14 +375,14 @@ export default function SimulatorPage() {
                       .map((r) => (
                         <div key={r.schedule_id}>
                           <div className="mb-1 flex items-center justify-between text-xs">
-                            <span className="text-slate-300">{scheduleName(r.schedule_id)}</span>
-                            <span className="text-slate-400">
+                            <span className="text-zinc-300">{scheduleName(r.schedule_id)}</span>
+                            <span className="text-zinc-400">
                               {dollars(r.projected_recovered_cents)} · {pct(r.projected_recovery_rate)}
                             </span>
                           </div>
-                          <div className="h-2.5 w-full overflow-hidden rounded-full bg-slate-800">
+                          <div className="h-2.5 w-full overflow-hidden rounded-full bg-zinc-800">
                             <div
-                              className="h-full rounded-full bg-emerald-400"
+                              className="h-full rounded-full bg-amber-400"
                               style={{
                                 width: `${((r.projected_recovered_cents ?? 0) / maxCompare) * 100}%`,
                               }}
@@ -392,7 +392,7 @@ export default function SimulatorPage() {
                       ))}
                   </div>
                 ) : (
-                  <p className="py-2 text-sm text-slate-500">No comparison run yet.</p>
+                  <p className="py-2 text-sm text-zinc-500">No comparison run yet.</p>
                 )}
               </CardBody>
             </Card>
@@ -416,7 +416,7 @@ export default function SimulatorPage() {
                   {simulations.map((s) => (
                     <TR
                       key={s.id}
-                      className={`cursor-pointer ${selectedId === s.id ? 'bg-slate-800/40' : ''}`}
+                      className={`cursor-pointer ${selectedId === s.id ? 'bg-zinc-800/40' : ''}`}
                       onClick={() => setSelectedId(s.id)}
                     >
                       <TD>
@@ -425,20 +425,20 @@ export default function SimulatorPage() {
                           checked={compareIds.includes(s.id)}
                           onChange={() => toggleCompare(s.id)}
                           onClick={(e) => e.stopPropagation()}
-                          className="h-4 w-4 accent-emerald-500"
+                          className="h-4 w-4 accent-amber-500"
                         />
                       </TD>
                       <TD>
-                        <div className="font-medium text-slate-200">{s.name}</div>
-                        <div className="text-[11px] text-slate-500">
+                        <div className="font-medium text-zinc-200">{s.name}</div>
+                        <div className="text-[11px] text-zinc-500">
                           {scheduleName(s.schedule_id)}
                         </div>
                       </TD>
                       <TD>
-                        <div className="font-medium text-emerald-400">
+                        <div className="font-medium text-amber-400">
                           {dollars(s.projected_recovered_cents)}
                         </div>
-                        <div className="text-[11px] text-slate-500">
+                        <div className="text-[11px] text-zinc-500">
                           {pct(s.projected_recovery_rate)}
                         </div>
                       </TD>
@@ -448,7 +448,7 @@ export default function SimulatorPage() {
                             e.stopPropagation()
                             removeSim(s)
                           }}
-                          className="text-slate-500 hover:text-red-400"
+                          className="text-zinc-500 hover:text-red-400"
                           aria-label={`Delete ${s.name}`}
                         >
                           ✕
@@ -485,11 +485,11 @@ export default function SimulatorPage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Schedule</label>
+            <label className="mb-1 block text-xs font-medium text-zinc-400">Schedule</label>
             <select
               value={runScheduleId}
               onChange={(e) => setRunScheduleId(e.target.value)}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white outline-none focus:border-emerald-500"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-white outline-none focus:border-amber-500"
             >
               {schedules.length === 0 && <option value="">No schedules available</option>}
               {schedules.map((s) => (
@@ -501,14 +501,14 @@ export default function SimulatorPage() {
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Run name</label>
+            <label className="mb-1 block text-xs font-medium text-zinc-400">Run name</label>
             <input
               value={runName}
               onChange={(e) => setRunName(e.target.value)}
               placeholder="Q3 baseline"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white outline-none focus:border-emerald-500"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-white outline-none focus:border-amber-500"
             />
-            <p className="mt-1 text-xs text-slate-500">
+            <p className="mt-1 text-xs text-zinc-500">
               Simulates the selected schedule against current open failed charges.
             </p>
           </div>

@@ -33,16 +33,16 @@ const features = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100">
-      <nav className="flex items-center justify-between border-b border-slate-800 px-6 py-4">
+    <main className="min-h-screen bg-zinc-950 text-zinc-100">
+      <nav className="flex items-center justify-between border-b border-zinc-800 px-6 py-4">
         <div className="flex items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500 text-base font-black text-slate-950">D</span>
-          <span className="text-lg font-black tracking-tight text-white">DunningRecovery<span className="text-emerald-400">Orchestrator</span></span>
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500 text-base font-black text-zinc-950">D</span>
+          <span className="text-lg font-black tracking-tight text-white">DunningRecovery<span className="text-amber-400">Orchestrator</span></span>
         </div>
         <div className="flex items-center gap-3 text-sm">
-          <Link href="/pricing" className="hidden text-slate-300 hover:text-white sm:block">Pricing</Link>
-          <Link href="/auth/sign-in" className="text-slate-300 hover:text-white">Sign In</Link>
-          <Link href="/auth/sign-up" className="rounded-lg bg-emerald-500 px-4 py-2 font-semibold text-slate-950 hover:bg-emerald-400">
+          <Link href="/pricing" className="hidden text-zinc-300 hover:text-white sm:block">Pricing</Link>
+          <Link href="/auth/sign-in" className="text-zinc-300 hover:text-white">Sign In</Link>
+          <Link href="/auth/sign-up" className="rounded-lg bg-amber-500 px-4 py-2 font-semibold text-zinc-950 hover:bg-amber-400">
             Get Started
           </Link>
         </div>
@@ -50,80 +50,82 @@ export default function Home() {
 
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(16,185,129,0.15),transparent)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(217,119,6,0.12),transparent)]" />
         <div className="relative mx-auto max-w-5xl px-6 py-24 text-center">
-          <span className="inline-flex items-center rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-400">
-            Recovered-revenue intelligence for subscription businesses
+          <span className="inline-flex items-center rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-400">
+            Recovery orchestration for subscription revenue teams
           </span>
           <h1 className="mt-6 text-4xl font-black leading-tight tracking-tight text-white sm:text-6xl">
-            Turn failed payment retries into
-            <span className="bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent"> recovered cash</span>
+            A disciplined system for recovering
+            <span className="bg-gradient-to-r from-amber-400 to-amber-200 bg-clip-text text-transparent"> failed-payment revenue</span>
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-400">
-            DunningRecoveryOrchestrator classifies every failed recurring charge by its decline code, routes it to the tactic that
-            works, simulates smart retry timing, and reconciles every recovered dollar in an auditable ledger. It never touches a
-            card and never processes a payment.
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-zinc-400">
+            DunningRecoveryOrchestrator gives finance and revenue operations teams a structured framework for classifying decline
+            reasons, sequencing retries, and reconciling recovered dollars against an auditable ledger. It does not process
+            payments or hold card data; it governs the decisions that determine how much of your at-risk MRR is recovered and how
+            quickly.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <Link href="/auth/sign-up" className="rounded-lg bg-emerald-500 px-6 py-3 font-semibold text-slate-950 hover:bg-emerald-400">
-              Start recovering revenue
+            <Link href="/auth/sign-up" className="rounded-lg bg-amber-500 px-6 py-3 font-semibold text-zinc-950 hover:bg-amber-400">
+              Request a workspace
             </Link>
-            <Link href="/pricing" className="rounded-lg border border-slate-700 px-6 py-3 font-semibold text-slate-200 hover:bg-slate-800">
-              View pricing
+            <Link href="/pricing" className="rounded-lg border border-zinc-700 px-6 py-3 font-semibold text-zinc-200 hover:bg-zinc-800">
+              Review pricing
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ROI stat band */}
-      <section className="border-y border-slate-800 bg-slate-900/40">
+      {/* Positioning band */}
+      <section className="border-y border-zinc-800 bg-zinc-900/40">
         <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 px-6 py-12 text-center sm:grid-cols-3">
           <div>
-            <div className="text-3xl font-black text-emerald-400">5-12%</div>
-            <div className="mt-1 text-sm text-slate-400">of recurring revenue lost to involuntary churn each year</div>
+            <div className="text-lg font-semibold text-white">Decline-reason discipline</div>
+            <div className="mt-1 text-sm text-zinc-400">A consistent taxonomy replaces ad hoc, one-off retry logic</div>
           </div>
           <div>
-            <div className="text-3xl font-black text-emerald-400">$300K+</div>
-            <div className="mt-1 text-sm text-slate-400">recovered annually from a 30% lift on a $20M book</div>
+            <div className="text-lg font-semibold text-white">Modeled retry timing</div>
+            <div className="mt-1 text-sm text-zinc-400">Simulate a retry schedule against history before committing to it</div>
           </div>
           <div>
-            <div className="text-3xl font-black text-emerald-400">$0</div>
-            <div className="mt-1 text-sm text-slate-400">every feature free for signed-in users</div>
+            <div className="text-lg font-semibold text-white">Auditable reconciliation</div>
+            <div className="mt-1 text-sm text-zinc-400">A ledger finance can close, export, and stand behind</div>
           </div>
         </div>
       </section>
 
       {/* Problem */}
       <section className="mx-auto max-w-4xl px-6 py-20">
-        <h2 className="text-center text-2xl font-bold text-white sm:text-3xl">Involuntary churn is silently destroying your MRR</h2>
-        <p className="mt-4 text-center text-slate-400">
-          When a renewal charge fails, most teams give up after a naive fixed retry or blast a generic payment-failed email. They
-          have no decline-reason taxonomy, no retry-timing model, no card-updater coverage view, and no recovered-revenue number
-          they can take to the CFO. DunningRecoveryOrchestrator is the decision and analytics layer that fixes all four.
+        <h2 className="text-center text-2xl font-bold text-white sm:text-3xl">Involuntary churn is an operational gap, not a fact of life</h2>
+        <p className="mt-4 text-center text-zinc-400">
+          When a renewal charge fails, most organizations apply a single fixed retry or send a generic payment-failed notice, with
+          no formal decline-reason taxonomy, no modeled retry timing, no visibility into card-updater coverage gaps, and no
+          recovered-revenue figure that finance can report with confidence. DunningRecoveryOrchestrator provides the decision
+          framework and reporting layer that addresses each of these gaps in a single system of record.
         </p>
       </section>
 
       {/* Feature grid */}
       <section className="mx-auto max-w-6xl px-6 pb-24">
-        <h2 className="mb-2 text-center text-2xl font-bold text-white sm:text-3xl">Everything you need to recover failed charges</h2>
-        <p className="mb-12 text-center text-slate-400">A deterministic engine that sits beside your billing processor.</p>
+        <h2 className="mb-2 text-center text-2xl font-bold text-white sm:text-3xl">A structured capability set for recovery operations</h2>
+        <p className="mb-12 text-center text-zinc-400">Positioned alongside your existing billing processor, not in place of it.</p>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f) => (
-            <div key={f.title} className="rounded-xl border border-slate-800 bg-slate-900/60 p-6 transition-colors hover:border-emerald-500/40">
+            <div key={f.title} className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-6 transition-colors hover:border-amber-500/40">
               <h3 className="text-base font-semibold text-white">{f.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-400">{f.body}</p>
+              <p className="mt-2 text-sm leading-relaxed text-zinc-400">{f.body}</p>
             </div>
           ))}
         </div>
         <div className="mt-12 text-center">
-          <Link href="/auth/sign-up" className="rounded-lg bg-emerald-500 px-6 py-3 font-semibold text-slate-950 hover:bg-emerald-400">
-            Create your free workspace
+          <Link href="/auth/sign-up" className="rounded-lg bg-amber-500 px-6 py-3 font-semibold text-zinc-950 hover:bg-amber-400">
+            Set up your workspace
           </Link>
         </div>
       </section>
 
-      <footer className="border-t border-slate-800 py-8 text-center text-sm text-slate-600">
-        <p>DunningRecoveryOrchestrator — recovered-revenue intelligence for subscription businesses.</p>
+      <footer className="border-t border-zinc-800 py-8 text-center text-sm text-zinc-600">
+        <p>DunningRecoveryOrchestrator — recovery orchestration for subscription revenue teams.</p>
       </footer>
     </main>
   )

@@ -52,7 +52,7 @@ function toneForRate(rate: number): 'emerald' | 'amber' | 'red' {
 }
 
 function RateSparkline({ points }: { points: RatePoint[] }) {
-  if (!points.length) return <span className="text-xs text-slate-600">no data</span>
+  if (!points.length) return <span className="text-xs text-zinc-600">no data</span>
   const w = 240
   const h = 56
   const max = Math.max(...points.map((p) => p.rate), 0.01)
@@ -255,7 +255,7 @@ export default function CohortsPage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold text-white">Cohort Recovery</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Slice involuntary churn recovery by dimension and benchmark cohorts head to head.
           </p>
         </div>
@@ -286,12 +286,12 @@ export default function CohortsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search cohorts..."
-              className="w-56 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
+              className="w-56 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 placeholder-zinc-600 focus:border-amber-500 focus:outline-none"
             />
             <select
               value={dimFilter}
               onChange={(e) => setDimFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
             >
               <option value="">All dimensions</option>
               {DIMENSIONS.map((d) => (
@@ -349,24 +349,24 @@ export default function CohortsPage() {
                           type="checkbox"
                           checked={selected.has(c.id)}
                           onChange={() => toggleSelect(c.id)}
-                          className="h-4 w-4 accent-emerald-500"
+                          className="h-4 w-4 accent-amber-500"
                         />
                       </TD>
-                      <TD className="font-medium text-slate-100">{c.name}</TD>
+                      <TD className="font-medium text-zinc-100">{c.name}</TD>
                       <TD>
                         <Badge tone="slate">{c.dimension}</Badge>
                       </TD>
                       <TD>
                         {ratesLoading[c.id] ? (
-                          <span className="text-xs text-slate-600">…</span>
+                          <span className="text-xs text-zinc-600">…</span>
                         ) : lr === null ? (
-                          <span className="text-xs text-slate-600">—</span>
+                          <span className="text-xs text-zinc-600">—</span>
                         ) : (
                           <Badge tone={toneForRate(lr)}>{pct(lr)}</Badge>
                         )}
                       </TD>
-                      <TD>{r ? <RateSparkline points={r.points} /> : <span className="text-xs text-slate-600">…</span>}</TD>
-                      <TD className="text-right tabular-nums text-slate-200">{money(recovered)}</TD>
+                      <TD>{r ? <RateSparkline points={r.points} /> : <span className="text-xs text-zinc-600">…</span>}</TD>
+                      <TD className="text-right tabular-nums text-zinc-200">{money(recovered)}</TD>
                       <TD className="text-right">
                         <div className="flex justify-end gap-2">
                           <Button size="sm" variant="ghost" onClick={() => openEdit(c)}>
@@ -393,7 +393,7 @@ export default function CohortsPage() {
           </CardHeader>
           <CardBody>
             {compareResults.length === 0 ? (
-              <p className="text-sm text-slate-500">No comparison data returned.</p>
+              <p className="text-sm text-zinc-500">No comparison data returned.</p>
             ) : (
               <div className="space-y-3">
                 {compareResults
@@ -401,10 +401,10 @@ export default function CohortsPage() {
                   .sort((a, b) => b.rate - a.rate)
                   .map((r) => (
                     <div key={r.cohort_id} className="flex items-center gap-3">
-                      <div className="w-40 shrink-0 truncate text-sm text-slate-300">{cohortName(r.cohort_id)}</div>
-                      <div className="h-6 flex-1 overflow-hidden rounded bg-slate-800">
+                      <div className="w-40 shrink-0 truncate text-sm text-zinc-300">{cohortName(r.cohort_id)}</div>
+                      <div className="h-6 flex-1 overflow-hidden rounded bg-zinc-800">
                         <div
-                          className="flex h-full items-center justify-end rounded bg-emerald-500/70 px-2 text-xs font-medium text-slate-950"
+                          className="flex h-full items-center justify-end rounded bg-amber-500/70 px-2 text-xs font-medium text-zinc-950"
                           style={{ width: `${Math.max(6, (r.rate / maxCompareRate) * 100)}%` }}
                         >
                           {pct(r.rate)}
@@ -440,20 +440,20 @@ export default function CohortsPage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Name</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Name</label>
             <input
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder="Enterprise plan — EU"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-amber-500 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Dimension</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Dimension</label>
             <select
               value={form.dimension}
               onChange={(e) => setForm({ ...form, dimension: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
             >
               {DIMENSIONS.map((d) => (
                 <option key={d} value={d}>
@@ -463,7 +463,7 @@ export default function CohortsPage() {
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
               Filters (JSON)
             </label>
             <textarea
@@ -472,9 +472,9 @@ export default function CohortsPage() {
               rows={5}
               spellCheck={false}
               placeholder='{ "plan_name": "Enterprise", "geography": "EU" }'
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-xs text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 font-mono text-xs text-zinc-200 placeholder-zinc-600 focus:border-amber-500 focus:outline-none"
             />
-            <p className="mt-1 text-xs text-slate-600">Key/value constraints applied to the subscription book.</p>
+            <p className="mt-1 text-xs text-zinc-600">Key/value constraints applied to the subscription book.</p>
           </div>
         </div>
       </Modal>

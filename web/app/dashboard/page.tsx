@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { PageSpinner } from '@/components/ui/Spinner'
 import { EmptyState } from '@/components/ui/EmptyState'
 import { Table, THead, TBody, TR, TH, TD } from '@/components/ui/Table'
+import { RightRail } from '@/components/RightRail'
 
 interface LedgerSummary {
   attempted_cents: number
@@ -126,20 +127,20 @@ export default function DashboardOverviewPage() {
 
   const healthSegments = health
     ? [
-        { label: 'Active', value: health.active, tone: 'bg-emerald-500' },
+        { label: 'Active', value: health.active, tone: 'bg-amber-500' },
         { label: 'At risk', value: health.at_risk, tone: 'bg-amber-500' },
         { label: 'In dunning', value: health.in_dunning, tone: 'bg-sky-500' },
-        { label: 'Recovered', value: health.recovered, tone: 'bg-emerald-400' },
+        { label: 'Recovered', value: health.recovered, tone: 'bg-amber-400' },
         { label: 'Churned', value: health.churned_involuntary, tone: 'bg-red-500' },
       ]
     : []
 
   return (
-    <div className="mx-auto max-w-7xl space-y-8">
+    <div className="mx-auto max-w-[1600px]">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-white">Recovery overview</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Recovered revenue, book health, and at-risk MRR across your subscription book.
           </p>
         </div>
@@ -152,6 +153,9 @@ export default function DashboardOverviewPage() {
           </Link>
         </div>
       </div>
+
+      <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
+        <div className="min-w-0 space-y-8">
 
       {/* Ledger KPIs */}
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
@@ -176,7 +180,7 @@ export default function DashboardOverviewPage() {
         <Card className="lg:col-span-2">
           <CardHeader className="flex items-center justify-between">
             <h2 className="text-sm font-semibold text-white">Book health</h2>
-            <Link href="/dashboard/book" className="text-xs text-emerald-400 hover:text-emerald-300">
+            <Link href="/dashboard/book" className="text-xs text-amber-400 hover:text-amber-300">
               View book →
             </Link>
           </CardHeader>
@@ -195,7 +199,7 @@ export default function DashboardOverviewPage() {
               />
             ) : (
               <>
-                <div className="flex h-3 w-full overflow-hidden rounded-full bg-slate-800">
+                <div className="flex h-3 w-full overflow-hidden rounded-full bg-zinc-800">
                   {healthSegments.map((s) =>
                     s.value > 0 ? (
                       <div
@@ -209,10 +213,10 @@ export default function DashboardOverviewPage() {
                 </div>
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
                   {healthSegments.map((s) => (
-                    <div key={s.label} className="rounded-lg border border-slate-800 bg-slate-900/40 px-3 py-2">
+                    <div key={s.label} className="rounded-lg border border-zinc-800 bg-zinc-900/40 px-3 py-2">
                       <div className="flex items-center gap-1.5">
                         <span className={`h-2 w-2 rounded-full ${s.tone}`} />
-                        <span className="text-[11px] uppercase tracking-wide text-slate-500">{s.label}</span>
+                        <span className="text-[11px] uppercase tracking-wide text-zinc-500">{s.label}</span>
                       </div>
                       <div className="mt-1 text-lg font-semibold text-white">{s.value}</div>
                     </div>
@@ -227,7 +231,7 @@ export default function DashboardOverviewPage() {
         <Card>
           <CardHeader className="flex items-center justify-between">
             <h2 className="text-sm font-semibold text-white">Forecast</h2>
-            <Link href="/dashboard/forecast" className="text-xs text-emerald-400 hover:text-emerald-300">
+            <Link href="/dashboard/forecast" className="text-xs text-amber-400 hover:text-amber-300">
               Detail →
             </Link>
           </CardHeader>
@@ -239,11 +243,11 @@ export default function DashboardOverviewPage() {
               />
             ) : (
               <>
-                <div className="text-xs uppercase tracking-wide text-slate-500">{latestForecast.period_label}</div>
-                <div className="text-3xl font-semibold text-emerald-400">
+                <div className="text-xs uppercase tracking-wide text-zinc-500">{latestForecast.period_label}</div>
+                <div className="text-3xl font-semibold text-amber-400">
                   {fmtMoney(latestForecast.projected_recovered_cents)}
                 </div>
-                <div className="text-xs text-slate-500">
+                <div className="text-xs text-zinc-500">
                   Range {fmtMoney(latestForecast.low_cents)} – {fmtMoney(latestForecast.high_cents)}
                 </div>
                 {/* simple low / projected / high bar */}
@@ -253,13 +257,13 @@ export default function DashboardOverviewPage() {
                     const seg = (v: number) => `${Math.min(100, (v / hi) * 100)}%`
                     return (
                       <>
-                        <Bar label="Low" width={seg(latestForecast.low_cents)} tone="bg-slate-600" />
+                        <Bar label="Low" width={seg(latestForecast.low_cents)} tone="bg-zinc-600" />
                         <Bar
                           label="Projected"
                           width={seg(latestForecast.projected_recovered_cents)}
-                          tone="bg-emerald-500"
+                          tone="bg-amber-500"
                         />
-                        <Bar label="High" width={seg(latestForecast.high_cents)} tone="bg-emerald-400/50" />
+                        <Bar label="High" width={seg(latestForecast.high_cents)} tone="bg-amber-400/50" />
                         {latestForecast.actual_recovered_cents != null && (
                           <Bar
                             label="Actual"
@@ -282,7 +286,7 @@ export default function DashboardOverviewPage() {
         <Card>
           <CardHeader className="flex items-center justify-between">
             <h2 className="text-sm font-semibold text-white">Top decline reasons</h2>
-            <Link href="/dashboard/insights" className="text-xs text-emerald-400 hover:text-emerald-300">
+            <Link href="/dashboard/insights" className="text-xs text-amber-400 hover:text-amber-300">
               Insights →
             </Link>
           </CardHeader>
@@ -296,13 +300,13 @@ export default function DashboardOverviewPage() {
                     <div className="flex items-center justify-between text-sm">
                       <div className="flex items-center gap-2">
                         <Badge tone="slate">{r.code}</Badge>
-                        <span className="text-slate-300">{r.label}</span>
+                        <span className="text-zinc-300">{r.label}</span>
                       </div>
-                      <span className="text-slate-400">
+                      <span className="text-zinc-400">
                         {r.count} · {fmtMoney(r.mrr_cents)}
                       </span>
                     </div>
-                    <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
+                    <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-zinc-800">
                       <div
                         className="h-full rounded-full bg-amber-500"
                         style={{ width: `${(r.count / maxReasonCount) * 100}%` }}
@@ -319,7 +323,7 @@ export default function DashboardOverviewPage() {
         <Card>
           <CardHeader className="flex items-center justify-between">
             <h2 className="text-sm font-semibold text-white">At-risk MRR by card brand</h2>
-            <Link href="/dashboard/card-updater" className="text-xs text-emerald-400 hover:text-emerald-300">
+            <Link href="/dashboard/card-updater" className="text-xs text-amber-400 hover:text-amber-300">
               Card updater →
             </Link>
           </CardHeader>
@@ -352,6 +356,12 @@ export default function DashboardOverviewPage() {
           </CardBody>
         </Card>
       </div>
+        </div>
+
+        <aside className="lg:sticky lg:top-20 lg:self-start">
+          <RightRail />
+        </aside>
+      </div>
     </div>
   )
 }
@@ -359,8 +369,8 @@ export default function DashboardOverviewPage() {
 function Bar({ label, width, tone }: { label: string; width: string; tone: string }) {
   return (
     <div className="flex items-center gap-2">
-      <span className="w-16 shrink-0 text-[11px] text-slate-500">{label}</span>
-      <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-800">
+      <span className="w-16 shrink-0 text-[11px] text-zinc-500">{label}</span>
+      <div className="h-2 flex-1 overflow-hidden rounded-full bg-zinc-800">
         <div className={`h-full rounded-full ${tone}`} style={{ width }} />
       </div>
     </div>

@@ -206,7 +206,7 @@ export default function SchedulesPage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold text-white">Retry Schedules</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Design retry cadences with payday-aware and issuer-pattern timing, plus per-decline-code
             overrides.
           </p>
@@ -270,22 +270,22 @@ export default function SchedulesPage() {
                 </CardHeader>
                 <CardBody className="space-y-4">
                   <div>
-                    <div className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-500">
+                    <div className="mb-2 text-xs font-medium uppercase tracking-wide text-zinc-500">
                       Retry timeline
                     </div>
-                    <div className="relative h-12 rounded-lg border border-slate-800 bg-slate-950/40">
-                      <div className="absolute left-2 right-2 top-1/2 h-px -translate-y-1/2 bg-slate-800" />
+                    <div className="relative h-12 rounded-lg border border-zinc-800 bg-zinc-950/40">
+                      <div className="absolute left-2 right-2 top-1/2 h-px -tranzinc-y-1/2 bg-zinc-800" />
                       {(s.offsets ?? []).map((h, i) => {
                         const pct = (h / max) * 100
                         return (
                           <div
                             key={i}
-                            className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2"
+                            className="absolute top-1/2 -tranzinc-x-1/2 -tranzinc-y-1/2"
                             style={{ left: `calc(${pct}% * 0.92 + 4%)` }}
                             title={`Attempt ${i + 1}: ${fmtHours(h)}`}
                           >
-                            <div className="h-3 w-3 rounded-full border-2 border-slate-950 bg-emerald-400" />
-                            <div className="mt-1 -translate-x-1/2 whitespace-nowrap text-[10px] text-slate-500">
+                            <div className="h-3 w-3 rounded-full border-2 border-zinc-950 bg-amber-400" />
+                            <div className="mt-1 -tranzinc-x-1/2 whitespace-nowrap text-[10px] text-zinc-500">
                               {fmtHours(h)}
                             </div>
                           </div>
@@ -295,17 +295,17 @@ export default function SchedulesPage() {
                   </div>
                   {overrides.length > 0 && (
                     <div>
-                      <div className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-500">
+                      <div className="mb-2 text-xs font-medium uppercase tracking-wide text-zinc-500">
                         Per-code overrides
                       </div>
                       <div className="space-y-1">
                         {overrides.map((o) => (
                           <div
                             key={o.code}
-                            className="flex items-center justify-between rounded-md bg-slate-800/40 px-3 py-1.5 text-xs"
+                            className="flex items-center justify-between rounded-md bg-zinc-800/40 px-3 py-1.5 text-xs"
                           >
-                            <span className="font-mono text-slate-300">{o.code}</span>
-                            <span className="text-slate-400">
+                            <span className="font-mono text-zinc-300">{o.code}</span>
+                            <span className="text-zinc-400">
                               {o.offsets.map(fmtHours).join(' → ')}
                             </span>
                           </div>
@@ -342,23 +342,23 @@ export default function SchedulesPage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Name</label>
+            <label className="mb-1 block text-xs font-medium text-zinc-400">Name</label>
             <input
               value={form.name}
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
               placeholder="Aggressive 4-step"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white outline-none focus:border-emerald-500"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-white outline-none focus:border-amber-500"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">
+            <label className="mb-1 block text-xs font-medium text-zinc-400">
               Retry offsets (hours, comma-separated)
             </label>
             <input
               value={form.offsetsText}
               onChange={(e) => setForm((f) => ({ ...f, offsetsText: e.target.value }))}
               placeholder="0, 24, 72, 120"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-white outline-none focus:border-emerald-500"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 font-mono text-sm text-white outline-none focus:border-amber-500"
             />
             {previewOffsets.length > 0 && (
               <div className="mt-2 flex flex-wrap gap-1.5">
@@ -370,12 +370,12 @@ export default function SchedulesPage() {
               </div>
             )}
             {previewOffsets.length > 0 && (
-              <div className="relative mt-3 h-8 rounded-md border border-slate-800 bg-slate-950/40">
-                <div className="absolute left-2 right-2 top-1/2 h-px -translate-y-1/2 bg-slate-800" />
+              <div className="relative mt-3 h-8 rounded-md border border-zinc-800 bg-zinc-950/40">
+                <div className="absolute left-2 right-2 top-1/2 h-px -tranzinc-y-1/2 bg-zinc-800" />
                 {previewOffsets.map((h, i) => (
                   <div
                     key={i}
-                    className="absolute top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-400"
+                    className="absolute top-1/2 h-2.5 w-2.5 -tranzinc-x-1/2 -tranzinc-y-1/2 rounded-full bg-amber-400"
                     style={{ left: `calc(${(h / maxOffset) * 100}% * 0.92 + 4%)` }}
                   />
                 ))}
@@ -384,41 +384,41 @@ export default function SchedulesPage() {
           </div>
 
           <div className="grid grid-cols-2 gap-3">
-            <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2">
+            <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2">
               <input
                 type="checkbox"
                 checked={form.payday_aligned}
                 onChange={(e) => setForm((f) => ({ ...f, payday_aligned: e.target.checked }))}
-                className="h-4 w-4 accent-emerald-500"
+                className="h-4 w-4 accent-amber-500"
               />
-              <span className="text-sm text-slate-200">Payday aligned</span>
+              <span className="text-sm text-zinc-200">Payday aligned</span>
             </label>
-            <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2">
+            <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2">
               <input
                 type="checkbox"
                 checked={form.issuer_pattern}
                 onChange={(e) => setForm((f) => ({ ...f, issuer_pattern: e.target.checked }))}
-                className="h-4 w-4 accent-emerald-500"
+                className="h-4 w-4 accent-amber-500"
               />
-              <span className="text-sm text-slate-200">Issuer pattern</span>
+              <span className="text-sm text-zinc-200">Issuer pattern</span>
             </label>
           </div>
 
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">
+            <label className="mb-1 block text-xs font-medium text-zinc-400">
               Per-decline-code overrides
             </label>
             <div className="space-y-1.5">
               {form.overrides.map((o) => (
                 <div
                   key={o.code}
-                  className="flex items-center justify-between rounded-md bg-slate-800/50 px-3 py-1.5 text-xs"
+                  className="flex items-center justify-between rounded-md bg-zinc-800/50 px-3 py-1.5 text-xs"
                 >
-                  <span className="font-mono text-slate-200">{o.code}</span>
-                  <span className="text-slate-400">{o.offsets.map(fmtHours).join(', ')}</span>
+                  <span className="font-mono text-zinc-200">{o.code}</span>
+                  <span className="text-zinc-400">{o.offsets.map(fmtHours).join(', ')}</span>
                   <button
                     onClick={() => removeOverride(o.code)}
-                    className="text-slate-500 hover:text-red-400"
+                    className="text-zinc-500 hover:text-red-400"
                     aria-label={`Remove ${o.code} override`}
                   >
                     ✕
@@ -431,13 +431,13 @@ export default function SchedulesPage() {
                 value={newOverrideCode}
                 onChange={(e) => setNewOverrideCode(e.target.value)}
                 placeholder="insufficient_funds"
-                className="w-1/2 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 font-mono text-xs text-white outline-none focus:border-emerald-500"
+                className="w-1/2 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 font-mono text-xs text-white outline-none focus:border-amber-500"
               />
               <input
                 value={newOverrideOffsets}
                 onChange={(e) => setNewOverrideOffsets(e.target.value)}
                 placeholder="0, 72, 168"
-                className="flex-1 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 font-mono text-xs text-white outline-none focus:border-emerald-500"
+                className="flex-1 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 font-mono text-xs text-white outline-none focus:border-amber-500"
               />
               <Button size="sm" variant="secondary" onClick={addOverride}>
                 Add

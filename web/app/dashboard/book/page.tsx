@@ -245,7 +245,7 @@ export default function BookPage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold text-white">Subscription Book</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Every recurring account, its payment health, and the MRR at risk of involuntary churn.
           </p>
         </div>
@@ -267,9 +267,9 @@ export default function BookPage() {
         </div>
       )}
       {notice && (
-        <div className="flex items-center justify-between rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-400">
+        <div className="flex items-center justify-between rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-sm text-amber-400">
           <span>{notice}</span>
-          <button onClick={() => setNotice(null)} className="text-emerald-300 hover:text-white">
+          <button onClick={() => setNotice(null)} className="text-amber-300 hover:text-white">
             ✕
           </button>
         </div>
@@ -281,12 +281,12 @@ export default function BookPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search name, email, external id..."
-            className="w-64 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
+            className="w-64 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 placeholder-zinc-600 focus:border-amber-500 focus:outline-none"
           />
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+            className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
           >
             <option value="">All statuses</option>
             {STATUSES.map((s) => (
@@ -298,7 +298,7 @@ export default function BookPage() {
           <select
             value={planFilter}
             onChange={(e) => setPlanFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+            className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
           >
             <option value="">All plans</option>
             {plans.map((p) => (
@@ -351,26 +351,26 @@ export default function BookPage() {
                 {accounts.map((a) => (
                   <TR key={a.id}>
                     <TD>
-                      <div className="font-medium text-slate-100">{a.customer_name}</div>
-                      {a.customer_email && <div className="text-xs text-slate-500">{a.customer_email}</div>}
+                      <div className="font-medium text-zinc-100">{a.customer_name}</div>
+                      {a.customer_email && <div className="text-xs text-zinc-500">{a.customer_email}</div>}
                     </TD>
-                    <TD>{a.plan_name ? <Badge tone="sky">{a.plan_name}</Badge> : <span className="text-slate-600">—</span>}</TD>
-                    <TD className="text-right tabular-nums text-slate-200">{money(a.mrr_cents)}</TD>
-                    <TD className="text-slate-400">
+                    <TD>{a.plan_name ? <Badge tone="sky">{a.plan_name}</Badge> : <span className="text-zinc-600">—</span>}</TD>
+                    <TD className="text-right tabular-nums text-zinc-200">{money(a.mrr_cents)}</TD>
+                    <TD className="text-zinc-400">
                       {a.card_brand || a.card_last4 ? (
                         <span className="text-xs">
                           {a.card_brand ?? 'card'} ····{a.card_last4 ?? '••••'}
                           {a.card_exp_month && a.card_exp_year ? (
-                            <span className="ml-1 text-slate-600">
+                            <span className="ml-1 text-zinc-600">
                               {String(a.card_exp_month).padStart(2, '0')}/{String(a.card_exp_year).slice(-2)}
                             </span>
                           ) : null}
                         </span>
                       ) : (
-                        <span className="text-slate-600">—</span>
+                        <span className="text-zinc-600">—</span>
                       )}
                     </TD>
-                    <TD className="text-slate-400">{a.geography || '—'}</TD>
+                    <TD className="text-zinc-400">{a.geography || '—'}</TD>
                     <TD>
                       <Badge tone={statusTone[a.status] ?? 'slate'}>{statusLabel(a.status)}</Badge>
                     </TD>
@@ -528,12 +528,12 @@ export default function BookPage() {
 }
 
 const inputCls =
-  'w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none'
+  'w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-amber-500 focus:outline-none'
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">{label}</label>
+      <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">{label}</label>
       {children}
     </div>
   )

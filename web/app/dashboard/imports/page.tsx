@@ -271,7 +271,7 @@ export default function ImportsPage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold text-white">Imports &amp; Seeder</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Bring your subscription book and failed-charge history in via CSV, or generate realistic sample data to
             explore the platform.
           </p>
@@ -282,7 +282,7 @@ export default function ImportsPage() {
         <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">{error}</div>
       )}
       {banner && (
-        <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-400">
+        <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-400">
           {banner}
         </div>
       )}
@@ -295,11 +295,11 @@ export default function ImportsPage() {
           <CardBody className="space-y-4">
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
-                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Entity</label>
+                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Entity</label>
                 <select
                   value={entity}
                   onChange={(e) => setEntity(e.target.value)}
-                  className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+                  className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
                 >
                   {ENTITIES.map((e) => (
                     <option key={e.value} value={e.value}>
@@ -309,13 +309,13 @@ export default function ImportsPage() {
                 </select>
               </div>
               <div>
-                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">CSV file</label>
+                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">CSV file</label>
                 <input
                   ref={fileRef}
                   type="file"
                   accept=".csv,text/csv"
                   onChange={onFile}
-                  className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-300 file:mr-3 file:rounded-md file:border-0 file:bg-slate-800 file:px-3 file:py-1 file:text-xs file:text-slate-200 hover:file:bg-slate-700"
+                  className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-300 file:mr-3 file:rounded-md file:border-0 file:bg-zinc-800 file:px-3 file:py-1 file:text-xs file:text-zinc-200 hover:file:bg-zinc-700"
                 />
               </div>
             </div>
@@ -323,7 +323,7 @@ export default function ImportsPage() {
             {headers.length > 0 ? (
               <>
                 <div className="flex items-center justify-between">
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-zinc-500">
                     {fileName} — {dataRows.length} data row(s), {headers.length} column(s)
                   </p>
                   <Button size="sm" variant="ghost" onClick={resetUpload}>
@@ -332,15 +332,15 @@ export default function ImportsPage() {
                 </div>
 
                 <div>
-                  <div className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-500">Column mapping</div>
+                  <div className="mb-2 text-xs font-medium uppercase tracking-wide text-zinc-500">Column mapping</div>
                   <div className="grid gap-2 sm:grid-cols-2">
                     {entityDef.fields.map((f) => (
                       <div key={f} className="flex items-center gap-2">
-                        <span className="w-36 shrink-0 truncate text-xs text-slate-400">{f}</span>
+                        <span className="w-36 shrink-0 truncate text-xs text-zinc-400">{f}</span>
                         <select
                           value={mapping[f] ?? ''}
                           onChange={(e) => setMapping((m) => ({ ...m, [f]: e.target.value }))}
-                          className="flex-1 rounded-lg border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs text-slate-200 focus:border-emerald-500 focus:outline-none"
+                          className="flex-1 rounded-lg border border-zinc-700 bg-zinc-950 px-2 py-1.5 text-xs text-zinc-200 focus:border-amber-500 focus:outline-none"
                         >
                           <option value="">— skip —</option>
                           {headers.map((h) => (
@@ -355,7 +355,7 @@ export default function ImportsPage() {
                 </div>
 
                 <div>
-                  <div className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-500">Preview (first 5)</div>
+                  <div className="mb-2 text-xs font-medium uppercase tracking-wide text-zinc-500">Preview (first 5)</div>
                   <Table>
                     <THead>
                       <TR>
@@ -398,12 +398,12 @@ export default function ImportsPage() {
             <h2 className="text-sm font-semibold text-white">Sample data seeder</h2>
           </CardHeader>
           <CardBody className="space-y-4">
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-zinc-400">
               Generate a realistic subscription book and failed-charge stream so you can explore recovery workflows
               without uploading data.
             </p>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Accounts to generate
               </label>
               <input
@@ -411,14 +411,14 @@ export default function ImportsPage() {
                 value={seedSize}
                 onChange={(e) => setSeedSize(e.target.value)}
                 min={1}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
               />
             </div>
             <Button className="w-full" onClick={seed} disabled={seeding}>
               {seeding ? 'Seeding...' : 'Generate sample data'}
             </Button>
-            <div className="border-t border-slate-800 pt-4">
-              <p className="mb-2 text-xs text-slate-500">
+            <div className="border-t border-zinc-800 pt-4">
+              <p className="mb-2 text-xs text-zinc-500">
                 Reset wipes every account, charge, ledger entry, and related record in this workspace. This cannot be
                 undone.
               </p>
@@ -462,15 +462,15 @@ export default function ImportsPage() {
               <TBody>
                 {jobs.map((j) => (
                   <TR key={j.id}>
-                    <TD className="font-medium text-slate-100">{j.entity ?? '—'}</TD>
-                    <TD className="text-slate-400">{j.source ?? 'csv'}</TD>
+                    <TD className="font-medium text-zinc-100">{j.entity ?? '—'}</TD>
+                    <TD className="text-zinc-400">{j.source ?? 'csv'}</TD>
                     <TD>
                       <Badge tone={statusTone(j.status)}>{j.status ?? 'unknown'}</Badge>
                     </TD>
-                    <TD className="text-right tabular-nums text-slate-200">{j.rows_total ?? 0}</TD>
-                    <TD className="text-right tabular-nums text-emerald-400">{j.rows_valid ?? 0}</TD>
+                    <TD className="text-right tabular-nums text-zinc-200">{j.rows_total ?? 0}</TD>
+                    <TD className="text-right tabular-nums text-amber-400">{j.rows_valid ?? 0}</TD>
                     <TD className="text-right tabular-nums text-red-400">{j.rows_invalid ?? 0}</TD>
-                    <TD className="text-slate-500">{fmtTime(j.created_at)}</TD>
+                    <TD className="text-zinc-500">{fmtTime(j.created_at)}</TD>
                     <TD className="text-right">
                       <Button size="sm" variant="ghost" onClick={() => openDetail(j)}>
                         View
@@ -492,18 +492,18 @@ export default function ImportsPage() {
               <Stat label="Valid" value={detail.rows_valid ?? 0} tone="emerald" />
               <Stat label="Invalid" value={detail.rows_invalid ?? 0} tone={detail.rows_invalid ? 'red' : 'default'} />
             </div>
-            <div className="flex items-center gap-2 text-sm text-slate-400">
+            <div className="flex items-center gap-2 text-sm text-zinc-400">
               <Badge tone={statusTone(detail.status)}>{detail.status ?? 'unknown'}</Badge>
               <span>{detail.entity}</span>
-              <span className="text-slate-600">·</span>
+              <span className="text-zinc-600">·</span>
               <span>{fmtTime(detail.created_at)}</span>
             </div>
             <div>
-              <div className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-500">Row errors</div>
+              <div className="mb-2 text-xs font-medium uppercase tracking-wide text-zinc-500">Row errors</div>
               {detailLoading ? (
                 <Spinner label="Loading errors..." />
               ) : !detail.errors || detail.errors.length === 0 ? (
-                <p className="text-sm text-slate-500">No row errors recorded.</p>
+                <p className="text-sm text-zinc-500">No row errors recorded.</p>
               ) : (
                 <ul className="space-y-1">
                   {detail.errors.map((err, i) => {

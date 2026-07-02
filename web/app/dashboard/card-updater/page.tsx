@@ -203,7 +203,7 @@ export default function CardUpdaterPage() {
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h1 className="text-xl font-semibold text-white">Card Updater</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Coverage gap report, expiring-card calendar, and at-risk MRR from card expiry.
           </p>
         </div>
@@ -218,7 +218,7 @@ export default function CardUpdaterPage() {
         </div>
       )}
       {notice && (
-        <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-400">
+        <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-400">
           {notice}
         </div>
       )}
@@ -243,7 +243,7 @@ export default function CardUpdaterPage() {
       <Card>
         <CardHeader>
           <h2 className="text-sm font-semibold text-white">Expiring-card calendar (next 12 months)</h2>
-          <p className="mt-0.5 text-xs text-slate-500">Bar height = uncovered at-risk MRR expiring that month.</p>
+          <p className="mt-0.5 text-xs text-zinc-500">Bar height = uncovered at-risk MRR expiring that month.</p>
         </CardHeader>
         <CardBody>
           <div className="flex items-end gap-2 overflow-x-auto pb-2" style={{ minHeight: 160 }}>
@@ -251,14 +251,14 @@ export default function CardUpdaterPage() {
               const h = Math.round((c.atRisk / maxCalAtRisk) * 120)
               return (
                 <div key={c.label} className="flex min-w-[48px] flex-1 flex-col items-center gap-1">
-                  <div className="text-[10px] text-slate-500">{c.atRisk > 0 ? money(c.atRisk) : ''}</div>
+                  <div className="text-[10px] text-zinc-500">{c.atRisk > 0 ? money(c.atRisk) : ''}</div>
                   <div
-                    className={`w-full rounded-t ${c.atRisk > 0 ? 'bg-red-500/70' : 'bg-slate-700/50'}`}
+                    className={`w-full rounded-t ${c.atRisk > 0 ? 'bg-red-500/70' : 'bg-zinc-700/50'}`}
                     style={{ height: `${Math.max(h, c.count > 0 ? 6 : 2)}px` }}
                     title={`${c.label}: ${c.count} card(s), ${money(c.atRisk)} at risk`}
                   />
-                  <div className="text-[10px] text-slate-400">{c.label}</div>
-                  <div className="text-[10px] text-slate-600">{c.count}</div>
+                  <div className="text-[10px] text-zinc-400">{c.label}</div>
+                  <div className="text-[10px] text-zinc-600">{c.count}</div>
                 </div>
               )
             })}
@@ -280,17 +280,17 @@ export default function CardUpdaterPage() {
                   const pct = Math.round((m.at_risk_cents / max) * 100)
                   return (
                     <div key={m.month} className="flex items-center gap-3">
-                      <div className="w-20 shrink-0 text-xs text-slate-400">{m.month}</div>
-                      <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-slate-800">
+                      <div className="w-20 shrink-0 text-xs text-zinc-400">{m.month}</div>
+                      <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-zinc-800">
                         <div className="h-full rounded-full bg-red-500/70" style={{ width: `${pct}%` }} />
                       </div>
-                      <div className="w-24 shrink-0 text-right text-xs text-slate-300">{money(m.at_risk_cents)}</div>
+                      <div className="w-24 shrink-0 text-right text-xs text-zinc-300">{money(m.at_risk_cents)}</div>
                     </div>
                   )
                 })}
               </div>
             ) : (
-              <p className="text-sm text-slate-500">No month breakdown available.</p>
+              <p className="text-sm text-zinc-500">No month breakdown available.</p>
             )}
           </CardBody>
         </Card>
@@ -307,17 +307,17 @@ export default function CardUpdaterPage() {
                   const pct = Math.round((b.at_risk_cents / max) * 100)
                   return (
                     <div key={b.brand} className="flex items-center gap-3">
-                      <div className="w-20 shrink-0 text-xs capitalize text-slate-400">{b.brand || 'unknown'}</div>
-                      <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-slate-800">
+                      <div className="w-20 shrink-0 text-xs capitalize text-zinc-400">{b.brand || 'unknown'}</div>
+                      <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-zinc-800">
                         <div className="h-full rounded-full bg-sky-500/70" style={{ width: `${pct}%` }} />
                       </div>
-                      <div className="w-24 shrink-0 text-right text-xs text-slate-300">{money(b.at_risk_cents)}</div>
+                      <div className="w-24 shrink-0 text-right text-xs text-zinc-300">{money(b.at_risk_cents)}</div>
                     </div>
                   )
                 })}
               </div>
             ) : (
-              <p className="text-sm text-slate-500">No brand breakdown available.</p>
+              <p className="text-sm text-zinc-500">No brand breakdown available.</p>
             )}
           </CardBody>
         </Card>
@@ -332,12 +332,12 @@ export default function CardUpdaterPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search customer, brand, plan..."
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-amber-500 focus:outline-none"
             />
             <select
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-100 focus:border-amber-500 focus:outline-none"
             >
               <option value="all">All coverage</option>
               {COVERAGE_OPTIONS.map((o) => (
@@ -385,7 +385,7 @@ export default function CardUpdaterPage() {
                   const covered = (r.coverage || '').toLowerCase() === 'covered'
                   return (
                     <TR key={r.id}>
-                      <TD className="font-medium text-slate-100">{r.customer_name || r.subscription_account_id}</TD>
+                      <TD className="font-medium text-zinc-100">{r.customer_name || r.subscription_account_id}</TD>
                       <TD className="capitalize">
                         {r.card_brand || '—'} {r.card_last4 ? `•••• ${r.card_last4}` : ''}
                       </TD>
@@ -395,7 +395,7 @@ export default function CardUpdaterPage() {
                         <Badge tone={coverageTone(r.coverage)}>{(r.coverage || 'unknown').replace('_', ' ')}</Badge>
                       </TD>
                       <TD className="text-right">
-                        <span className={!covered && r.at_risk_mrr_cents > 0 ? 'text-red-400' : 'text-slate-400'}>
+                        <span className={!covered && r.at_risk_mrr_cents > 0 ? 'text-red-400' : 'text-zinc-400'}>
                           {money(r.at_risk_mrr_cents)}
                         </span>
                       </TD>
@@ -430,17 +430,17 @@ export default function CardUpdaterPage() {
       >
         {editing && (
           <div className="space-y-4">
-            <div className="text-sm text-slate-400">
+            <div className="text-sm text-zinc-400">
               {editing.customer_name || editing.subscription_account_id}
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Coverage status
               </label>
               <select
                 value={editCoverage}
                 onChange={(e) => setEditCoverage(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 focus:border-amber-500 focus:outline-none"
               >
                 {COVERAGE_OPTIONS.map((o) => (
                   <option key={o} value={o}>

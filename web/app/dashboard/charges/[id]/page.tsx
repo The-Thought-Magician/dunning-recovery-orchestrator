@@ -207,13 +207,13 @@ export default function ChargeDetailPage({ params }: { params: Promise<{ id: str
     <div className="mx-auto max-w-5xl space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <Link href="/dashboard/inbox" className="text-xs text-slate-500 hover:text-emerald-400">
+          <Link href="/dashboard/inbox" className="text-xs text-zinc-500 hover:text-amber-400">
             ← Back to inbox
           </Link>
           <h1 className="mt-1 text-2xl font-bold tracking-tight text-white">
             {charge.customer_name || charge.external_id || `Charge ${charge.id.slice(0, 8)}`}
           </h1>
-          <div className="mt-1 flex items-center gap-2 text-sm text-slate-400">
+          <div className="mt-1 flex items-center gap-2 text-sm text-zinc-400">
             {charge.customer_email && <span>{charge.customer_email}</span>}
             <Badge tone={statusTone(charge.status)}>{charge.status.replace('_', ' ')}</Badge>
           </div>
@@ -272,17 +272,17 @@ export default function ChargeDetailPage({ params }: { params: Promise<{ id: str
             />
 
             {declineCode && (
-              <div className="mt-2 rounded-lg border border-slate-800 bg-slate-900/50 p-3">
+              <div className="mt-2 rounded-lg border border-zinc-800 bg-zinc-900/50 p-3">
                 <div className="flex items-center justify-between">
-                  <div className="font-medium text-slate-200">{declineCode.label}</div>
+                  <div className="font-medium text-zinc-200">{declineCode.label}</div>
                   <Badge tone={declineCode.recoverable ? 'emerald' : 'red'}>
                     {declineCode.recoverable ? 'Recoverable' : 'Hard decline'}
                   </Badge>
                 </div>
                 {declineCode.description && (
-                  <p className="mt-1 text-xs text-slate-500">{declineCode.description}</p>
+                  <p className="mt-1 text-xs text-zinc-500">{declineCode.description}</p>
                 )}
-                <div className="mt-2 flex flex-wrap gap-2 text-xs text-slate-400">
+                <div className="mt-2 flex flex-wrap gap-2 text-xs text-zinc-400">
                   {declineCode.decline_class && <span>Class: {declineCode.decline_class}</span>}
                   {declineCode.category && <span>· Category: {declineCode.category}</span>}
                   {declineCode.default_tactic && <span>· Default tactic: {declineCode.default_tactic}</span>}
@@ -290,7 +290,7 @@ export default function ChargeDetailPage({ params }: { params: Promise<{ id: str
                 </div>
                 <Link
                   href="/dashboard/taxonomy"
-                  className="mt-2 inline-block text-xs text-emerald-400 hover:text-emerald-300"
+                  className="mt-2 inline-block text-xs text-amber-400 hover:text-amber-300"
                 >
                   Manage in taxonomy →
                 </Link>
@@ -306,21 +306,21 @@ export default function ChargeDetailPage({ params }: { params: Promise<{ id: str
           </CardHeader>
           <CardBody className="space-y-4 text-sm">
             {decision ? (
-              <div className="rounded-lg border border-slate-800 bg-slate-900/50 p-3">
+              <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs uppercase tracking-wide text-slate-500">Chosen tactic</span>
+                  <span className="text-xs uppercase tracking-wide text-zinc-500">Chosen tactic</span>
                   <Badge tone="emerald">{decision.chosen_tactic || 'none'}</Badge>
                 </div>
-                {decision.reason && <p className="mt-2 text-xs text-slate-400">{decision.reason}</p>}
-                <div className="mt-2 text-xs text-slate-600">
+                {decision.reason && <p className="mt-2 text-xs text-zinc-400">{decision.reason}</p>}
+                <div className="mt-2 text-xs text-zinc-600">
                   {decision.rule_id ? `Rule ${decision.rule_id.slice(0, 8)}` : 'No rule matched'} ·{' '}
                   {fmtDateTime(decision.created_at)}
                 </div>
               </div>
             ) : (
-              <div className="rounded-lg border border-dashed border-slate-800 bg-slate-900/30 p-3 text-xs text-slate-500">
+              <div className="rounded-lg border border-dashed border-zinc-800 bg-zinc-900/30 p-3 text-xs text-zinc-500">
                 No routing decision recorded for this charge yet. Apply routing from the{' '}
-                <Link href="/dashboard/routing" className="text-emerald-400 hover:text-emerald-300">
+                <Link href="/dashboard/routing" className="text-amber-400 hover:text-amber-300">
                   routing page
                 </Link>
                 .
@@ -328,7 +328,7 @@ export default function ChargeDetailPage({ params }: { params: Promise<{ id: str
             )}
 
             <div>
-              <label className="mb-1 block text-xs uppercase tracking-wide text-slate-500">
+              <label className="mb-1 block text-xs uppercase tracking-wide text-zinc-500">
                 Manual tactic override
               </label>
               <div className="flex gap-2">
@@ -336,7 +336,7 @@ export default function ChargeDetailPage({ params }: { params: Promise<{ id: str
                   value={tacticInput}
                   onChange={(e) => setTacticInput(e.target.value)}
                   placeholder="tactic key (e.g. smart_retry)"
-                  className="flex-1 rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 focus:border-emerald-500 focus:outline-none"
+                  className="flex-1 rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-amber-500 focus:outline-none"
                 />
                 <Button
                   size="sm"
@@ -346,7 +346,7 @@ export default function ChargeDetailPage({ params }: { params: Promise<{ id: str
                   {savingTactic ? 'Saving…' : 'Save'}
                 </Button>
               </div>
-              <div className="mt-1 text-xs text-slate-500">
+              <div className="mt-1 text-xs text-zinc-500">
                 Currently assigned: {charge.assigned_tactic ? <Badge tone="slate">{charge.assigned_tactic}</Badge> : 'unassigned'}
               </div>
             </div>
@@ -367,32 +367,32 @@ export default function ChargeDetailPage({ params }: { params: Promise<{ id: str
               description="Ledger entries are written when this charge is retried or resolved."
             />
           ) : (
-            <ol className="relative space-y-5 border-l border-slate-800 pl-6">
+            <ol className="relative space-y-5 border-l border-zinc-800 pl-6">
               {timeline.map((e) => (
                 <li key={e.id} className="relative">
                   <span
-                    className={`absolute -left-[27px] top-1 h-3 w-3 rounded-full border-2 border-slate-950 ${
+                    className={`absolute -left-[27px] top-1 h-3 w-3 rounded-full border-2 border-zinc-950 ${
                       e.entry_type === 'recovered'
-                        ? 'bg-emerald-500'
+                        ? 'bg-amber-500'
                         : e.entry_type === 'lost'
                           ? 'bg-red-500'
                           : e.entry_type === 'attempted'
                             ? 'bg-sky-500'
-                            : 'bg-slate-500'
+                            : 'bg-zinc-500'
                     }`}
                   />
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div className="flex items-center gap-2">
                       <Badge tone={entryTone(e.entry_type)}>{e.entry_type.replace('_', ' ')}</Badge>
-                      {e.tactic && <span className="text-xs text-slate-400">via {e.tactic}</span>}
+                      {e.tactic && <span className="text-xs text-zinc-400">via {e.tactic}</span>}
                       {e.retry_attempt != null && (
-                        <span className="text-xs text-slate-500">attempt #{e.retry_attempt}</span>
+                        <span className="text-xs text-zinc-500">attempt #{e.retry_attempt}</span>
                       )}
                       {e.reconciled && <Badge tone="emerald">reconciled</Badge>}
                     </div>
                     <div className="text-sm font-medium text-white">{fmtMoney(e.amount_cents, charge.currency)}</div>
                   </div>
-                  <div className="mt-0.5 text-xs text-slate-500">{fmtDateTime(e.created_at)}</div>
+                  <div className="mt-0.5 text-xs text-zinc-500">{fmtDateTime(e.created_at)}</div>
                 </li>
               ))}
             </ol>
@@ -405,9 +405,9 @@ export default function ChargeDetailPage({ params }: { params: Promise<{ id: str
 
 function Row({ label, value }: { label: string; value: React.ReactNode }) {
   return (
-    <div className="flex items-center justify-between border-b border-slate-800/60 pb-2 last:border-0 last:pb-0">
-      <span className="text-slate-500">{label}</span>
-      <span className="text-right text-slate-200">{value}</span>
+    <div className="flex items-center justify-between border-b border-zinc-800/60 pb-2 last:border-0 last:pb-0">
+      <span className="text-zinc-500">{label}</span>
+      <span className="text-right text-zinc-200">{value}</span>
     </div>
   )
 }

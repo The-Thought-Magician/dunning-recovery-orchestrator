@@ -191,14 +191,14 @@ export default function SettingsPage() {
   const stripeEnabled = billing?.stripeEnabled ?? false
 
   const inputCls =
-    'w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none'
-  const labelCls = 'mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500'
+    'w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-amber-500 focus:outline-none'
+  const labelCls = 'mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500'
 
   return (
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-semibold text-white">Settings</h1>
-        <p className="mt-1 text-sm text-slate-400">
+        <p className="mt-1 text-sm text-zinc-400">
           Configure your recovery workspace, defaults, and subscription.
         </p>
       </div>
@@ -212,7 +212,7 @@ export default function SettingsPage() {
           <Card>
             <CardHeader>
               <h2 className="text-sm font-semibold text-white">Workspace</h2>
-              <p className="mt-0.5 text-xs text-slate-500">Identity, currency, and reporting defaults.</p>
+              <p className="mt-0.5 text-xs text-zinc-500">Identity, currency, and reporting defaults.</p>
             </CardHeader>
             <CardBody className="space-y-4">
               {formError && (
@@ -250,7 +250,7 @@ export default function SettingsPage() {
               <div className="sm:max-w-[50%]">
                 <label className={labelCls}>Fiscal period start</label>
                 <input type="date" value={fiscalStart} onChange={(e) => setFiscalStart(e.target.value)} className={inputCls} />
-                <p className="mt-1 text-xs text-slate-600">Anchors ledger period boundaries and forecasts.</p>
+                <p className="mt-1 text-xs text-zinc-600">Anchors ledger period boundaries and forecasts.</p>
               </div>
             </CardBody>
           </Card>
@@ -258,23 +258,23 @@ export default function SettingsPage() {
           <Card>
             <CardHeader>
               <h2 className="text-sm font-semibold text-white">Notification preferences</h2>
-              <p className="mt-0.5 text-xs text-slate-500">Choose which events reach your notifications center.</p>
+              <p className="mt-0.5 text-xs text-zinc-500">Choose which events reach your notifications center.</p>
             </CardHeader>
             <CardBody className="space-y-1">
               {PREF_FIELDS.map((f) => (
                 <label
                   key={String(f.key)}
-                  className="flex cursor-pointer items-center justify-between gap-4 rounded-lg px-2 py-2.5 hover:bg-slate-800/30"
+                  className="flex cursor-pointer items-center justify-between gap-4 rounded-lg px-2 py-2.5 hover:bg-zinc-800/30"
                 >
                   <div>
-                    <div className="text-sm font-medium text-slate-200">{f.label}</div>
-                    <div className="text-xs text-slate-500">{f.hint}</div>
+                    <div className="text-sm font-medium text-zinc-200">{f.label}</div>
+                    <div className="text-xs text-zinc-500">{f.hint}</div>
                   </div>
                   <input
                     type="checkbox"
                     checked={Boolean(prefs[f.key])}
                     onChange={(e) => setPrefs((p) => ({ ...p, [f.key]: e.target.checked }))}
-                    className="h-4 w-4 accent-emerald-500"
+                    className="h-4 w-4 accent-amber-500"
                   />
                 </label>
               ))}
@@ -285,7 +285,7 @@ export default function SettingsPage() {
             <Button onClick={saveWorkspace} disabled={saving}>
               {saving ? <Spinner /> : 'Save changes'}
             </Button>
-            {savedAt && <span className="text-xs text-emerald-400">Saved {new Date(savedAt).toLocaleTimeString()}</span>}
+            {savedAt && <span className="text-xs text-amber-400">Saved {new Date(savedAt).toLocaleTimeString()}</span>}
           </div>
         </div>
 
@@ -296,16 +296,16 @@ export default function SettingsPage() {
               {sub?.status && <Badge tone={statusTone(sub.status)}>{sub.status}</Badge>}
             </CardHeader>
             <CardBody className="space-y-4">
-              <div className="rounded-lg border border-slate-800 bg-slate-950/60 p-4">
+              <div className="rounded-lg border border-zinc-800 bg-zinc-950/60 p-4">
                 <div className="flex items-baseline justify-between">
                   <span className="text-lg font-semibold text-white">{plan?.name ?? (isPro ? 'Pro' : 'Free')}</span>
                   <Badge tone={isPro ? 'emerald' : 'slate'}>{isPro ? 'Pro' : 'Free'}</Badge>
                 </div>
-                <div className="mt-1 text-sm text-slate-400">
+                <div className="mt-1 text-sm text-zinc-400">
                   {plan ? (plan.price_cents > 0 ? `${money(plan.price_cents, currency)} / mo` : 'No charge') : '—'}
                 </div>
                 {sub?.current_period_end && (
-                  <div className="mt-2 text-xs text-slate-500">
+                  <div className="mt-2 text-xs text-zinc-500">
                     Renews {new Date(sub.current_period_end).toLocaleDateString()}
                   </div>
                 )}
@@ -350,18 +350,18 @@ export default function SettingsPage() {
             </CardHeader>
             <CardBody className="space-y-2 text-sm">
               <div className="flex justify-between gap-3">
-                <span className="text-slate-500">ID</span>
-                <code className="truncate font-mono text-xs text-slate-400">{ws?.id ?? '—'}</code>
+                <span className="text-zinc-500">ID</span>
+                <code className="truncate font-mono text-xs text-zinc-400">{ws?.id ?? '—'}</code>
               </div>
               <div className="flex justify-between gap-3">
-                <span className="text-slate-500">Created</span>
-                <span className="text-slate-300">
+                <span className="text-zinc-500">Created</span>
+                <span className="text-zinc-300">
                   {ws?.created_at ? new Date(ws.created_at).toLocaleDateString() : '—'}
                 </span>
               </div>
               <div className="flex justify-between gap-3">
-                <span className="text-slate-500">Updated</span>
-                <span className="text-slate-300">
+                <span className="text-zinc-500">Updated</span>
+                <span className="text-zinc-300">
                   {ws?.updated_at ? new Date(ws.updated_at).toLocaleDateString() : '—'}
                 </span>
               </div>

@@ -223,7 +223,7 @@ export default function LedgerPage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold text-white">Recovery Ledger</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Track recovered revenue, reconcile entries, close accounting periods, and export for
             finance.
           </p>
@@ -270,9 +270,9 @@ export default function LedgerPage() {
                 <h3 className="text-base font-semibold text-white">Outcome breakdown</h3>
               </CardHeader>
               <CardBody>
-                <div className="flex h-4 w-full overflow-hidden rounded-full bg-slate-800">
+                <div className="flex h-4 w-full overflow-hidden rounded-full bg-zinc-800">
                   <div
-                    className="h-full bg-emerald-400"
+                    className="h-full bg-amber-400"
                     style={{ width: `${(recovered / outcomeTotal) * 100}%` }}
                     title={`Recovered ${dollars(recovered)}`}
                   />
@@ -287,9 +287,9 @@ export default function LedgerPage() {
                     title={`Written off ${dollars(writtenOff)}`}
                   />
                 </div>
-                <div className="mt-3 flex flex-wrap gap-4 text-xs text-slate-400">
+                <div className="mt-3 flex flex-wrap gap-4 text-xs text-zinc-400">
                   <span className="flex items-center gap-1.5">
-                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" /> Recovered
+                    <span className="h-2.5 w-2.5 rounded-full bg-amber-400" /> Recovered
                   </span>
                   <span className="flex items-center gap-1.5">
                     <span className="h-2.5 w-2.5 rounded-full bg-red-500" /> Lost
@@ -309,7 +309,7 @@ export default function LedgerPage() {
             <CardBody className="p-0">
               {periods.length === 0 ? (
                 <div className="px-5 py-6">
-                  <p className="text-sm text-slate-500">
+                  <p className="text-sm text-zinc-500">
                     No periods closed yet. Closing a period snapshots current totals.
                   </p>
                 </div>
@@ -334,7 +334,7 @@ export default function LedgerPage() {
                         onClick={() => setPeriodFilter((cur) => (cur === p.id ? '' : p.id))}
                       >
                         <TD>
-                          <span className="font-medium text-slate-200">{p.label}</span>
+                          <span className="font-medium text-zinc-200">{p.label}</span>
                           {periodFilter === p.id && (
                             <Badge tone="sky" className="ml-2">
                               filtering
@@ -347,10 +347,10 @@ export default function LedgerPage() {
                           </Badge>
                         </TD>
                         <TD>{dollars(p.attempted_cents)}</TD>
-                        <TD className="text-emerald-400">{dollars(p.recovered_cents)}</TD>
+                        <TD className="text-amber-400">{dollars(p.recovered_cents)}</TD>
                         <TD className="text-red-400">{dollars(p.lost_cents)}</TD>
                         <TD className="text-amber-400">{dollars(p.written_off_cents)}</TD>
-                        <TD className="text-slate-500">{fmtDate(p.closed_at ?? undefined)}</TD>
+                        <TD className="text-zinc-500">{fmtDate(p.closed_at ?? undefined)}</TD>
                       </TR>
                     ))}
                   </TBody>
@@ -363,7 +363,7 @@ export default function LedgerPage() {
             <CardHeader>
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <h3 className="text-base font-semibold text-white">Ledger entries</h3>
-                <div className="text-xs text-slate-500">
+                <div className="text-xs text-zinc-500">
                   {filteredEntries.length} shown · net {dollars(visibleTotal)}
                 </div>
               </div>
@@ -372,12 +372,12 @@ export default function LedgerPage() {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search tactic, charge, id..."
-                  className="w-48 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-white outline-none focus:border-emerald-500"
+                  className="w-48 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-white outline-none focus:border-amber-500"
                 />
                 <select
                   value={typeFilter}
                   onChange={(e) => setTypeFilter(e.target.value)}
-                  className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-white outline-none focus:border-emerald-500"
+                  className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-white outline-none focus:border-amber-500"
                 >
                   <option value="">All types</option>
                   {ENTRY_TYPES.map((t) => (
@@ -389,7 +389,7 @@ export default function LedgerPage() {
                 <select
                   value={periodFilter}
                   onChange={(e) => setPeriodFilter(e.target.value)}
-                  className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-white outline-none focus:border-emerald-500"
+                  className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-white outline-none focus:border-amber-500"
                 >
                   <option value="">All periods</option>
                   {periods.map((p) => (
@@ -403,7 +403,7 @@ export default function LedgerPage() {
                   onChange={(e) =>
                     setReconciledFilter(e.target.value as 'all' | 'reconciled' | 'open')
                   }
-                  className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-white outline-none focus:border-emerald-500"
+                  className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-white outline-none focus:border-amber-500"
                 >
                   <option value="all">All entries</option>
                   <option value="open">Unreconciled</option>
@@ -454,11 +454,11 @@ export default function LedgerPage() {
                             {e.entry_type.replace('_', ' ')}
                           </Badge>
                         </TD>
-                        <TD className="font-medium text-slate-200">{dollars(e.amount_cents)}</TD>
+                        <TD className="font-medium text-zinc-200">{dollars(e.amount_cents)}</TD>
                         <TD>{e.tactic || '—'}</TD>
                         <TD>{e.retry_attempt ?? '—'}</TD>
-                        <TD className="text-slate-400">{periodLabel(e.period_id)}</TD>
-                        <TD className="text-slate-500">{fmtDate(e.created_at)}</TD>
+                        <TD className="text-zinc-400">{periodLabel(e.period_id)}</TD>
+                        <TD className="text-zinc-500">{fmtDate(e.created_at)}</TD>
                         <TD>
                           {e.reconciled ? (
                             <Badge tone="emerald">Reconciled</Badge>
@@ -505,14 +505,14 @@ export default function LedgerPage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Period label</label>
+            <label className="mb-1 block text-xs font-medium text-zinc-400">Period label</label>
             <input
               value={closeLabel}
               onChange={(e) => setCloseLabel(e.target.value)}
               placeholder="2026-Q2"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white outline-none focus:border-emerald-500"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-white outline-none focus:border-amber-500"
             />
-            <p className="mt-1 text-xs text-slate-500">
+            <p className="mt-1 text-xs text-zinc-500">
               Snapshots current attempted, recovered, lost, and written-off totals into a closed
               period.
             </p>

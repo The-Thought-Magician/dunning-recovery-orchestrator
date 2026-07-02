@@ -183,7 +183,7 @@ export default function ReportsPage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold text-white">Reports</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Board-ready recovered-revenue summary, one-click exports, and scheduled report definitions.
           </p>
         </div>
@@ -202,7 +202,7 @@ export default function ReportsPage() {
         <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">{error}</div>
       )}
       {banner && (
-        <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-400">
+        <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-400">
           {banner}
         </div>
       )}
@@ -222,11 +222,11 @@ export default function ReportsPage() {
           <CardBody>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {kpis.map((k, i) => (
-                <div key={i} className="rounded-lg border border-slate-800 bg-slate-950/40 px-4 py-3">
-                  <div className="text-xs font-medium uppercase tracking-wide text-slate-500">{k.label}</div>
+                <div key={i} className="rounded-lg border border-zinc-800 bg-zinc-950/40 px-4 py-3">
+                  <div className="text-xs font-medium uppercase tracking-wide text-zinc-500">{k.label}</div>
                   <div className="mt-1 text-lg font-semibold text-white">
                     {k.value}
-                    {k.unit ? <span className="ml-1 text-sm text-slate-500">{k.unit}</span> : null}
+                    {k.unit ? <span className="ml-1 text-sm text-zinc-500">{k.unit}</span> : null}
                   </div>
                 </div>
               ))}
@@ -251,21 +251,21 @@ export default function ReportsPage() {
           </CardHeader>
           <CardBody>
             {topReasons.length === 0 ? (
-              <p className="text-sm text-slate-500">No decline reasons recorded yet.</p>
+              <p className="text-sm text-zinc-500">No decline reasons recorded yet.</p>
             ) : (
               <div className="space-y-3">
                 {topReasons.slice(0, 8).map((r) => (
                   <div key={r.code} className="flex items-center gap-3">
-                    <div className="w-40 shrink-0 truncate text-sm text-slate-300">{r.label || r.code}</div>
-                    <div className="h-6 flex-1 overflow-hidden rounded bg-slate-800">
+                    <div className="w-40 shrink-0 truncate text-sm text-zinc-300">{r.label || r.code}</div>
+                    <div className="h-6 flex-1 overflow-hidden rounded bg-zinc-800">
                       <div
-                        className="flex h-full items-center justify-end rounded bg-emerald-500/70 px-2 text-xs font-medium text-slate-950"
+                        className="flex h-full items-center justify-end rounded bg-amber-500/70 px-2 text-xs font-medium text-zinc-950"
                         style={{ width: `${Math.max(6, ((r.mrr_cents ?? 0) / maxReasonMrr) * 100)}%` }}
                       >
                         {money(r.mrr_cents ?? 0)}
                       </div>
                     </div>
-                    <div className="w-12 shrink-0 text-right text-xs text-slate-500">{r.count ?? 0}×</div>
+                    <div className="w-12 shrink-0 text-right text-xs text-zinc-500">{r.count ?? 0}×</div>
                   </div>
                 ))}
               </div>
@@ -307,14 +307,14 @@ export default function ReportsPage() {
               <TBody>
                 {defs.map((d) => (
                   <TR key={d.id}>
-                    <TD className="font-medium text-slate-100">{d.name ?? 'Untitled'}</TD>
+                    <TD className="font-medium text-zinc-100">{d.name ?? 'Untitled'}</TD>
                     <TD>
                       <Badge tone="sky">{d.cadence ?? '—'}</Badge>
                     </TD>
                     <TD>
                       <Badge tone="slate">{(d.format ?? 'csv').toUpperCase()}</Badge>
                     </TD>
-                    <TD className="text-slate-400">{recipientText(d.recipients)}</TD>
+                    <TD className="text-zinc-400">{recipientText(d.recipients)}</TD>
                   </TR>
                 ))}
               </TBody>
@@ -345,21 +345,21 @@ export default function ReportsPage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Name</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Name</label>
             <input
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder="Weekly recovery board report"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-amber-500 focus:outline-none"
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Cadence</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Cadence</label>
               <select
                 value={form.cadence}
                 onChange={(e) => setForm({ ...form, cadence: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
               >
                 {CADENCES.map((c) => (
                   <option key={c} value={c}>
@@ -369,11 +369,11 @@ export default function ReportsPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Format</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Format</label>
               <select
                 value={form.format}
                 onChange={(e) => setForm({ ...form, format: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
               >
                 <option value="csv">CSV</option>
                 <option value="json">JSON</option>
@@ -381,14 +381,14 @@ export default function ReportsPage() {
             </div>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
               Recipients (comma-separated)
             </label>
             <input
               value={form.recipients}
               onChange={(e) => setForm({ ...form, recipients: e.target.value })}
               placeholder="cfo@acme.com, ops@acme.com"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-amber-500 focus:outline-none"
             />
           </div>
         </div>
@@ -399,7 +399,7 @@ export default function ReportsPage() {
 
 function RecoveryBars({ summary }: { summary: LedgerSummary }) {
   const rows: Array<{ label: string; cents: number; tone: string }> = [
-    { label: 'Recovered', cents: summary.recovered_cents ?? 0, tone: 'bg-emerald-500/70' },
+    { label: 'Recovered', cents: summary.recovered_cents ?? 0, tone: 'bg-amber-500/70' },
     { label: 'Lost', cents: summary.lost_cents ?? 0, tone: 'bg-red-500/70' },
     { label: 'Written off', cents: summary.written_off_cents ?? 0, tone: 'bg-amber-500/70' },
   ]
@@ -408,15 +408,15 @@ function RecoveryBars({ summary }: { summary: LedgerSummary }) {
   return (
     <div className="space-y-3">
       <div className="flex items-baseline justify-between">
-        <span className="text-xs uppercase tracking-wide text-slate-500">Attempted</span>
+        <span className="text-xs uppercase tracking-wide text-zinc-500">Attempted</span>
         <span className="text-sm font-semibold text-white">{money(attempted)}</span>
       </div>
       {rows.map((r) => (
         <div key={r.label} className="flex items-center gap-3">
-          <div className="w-24 shrink-0 text-sm text-slate-300">{r.label}</div>
-          <div className="h-6 flex-1 overflow-hidden rounded bg-slate-800">
+          <div className="w-24 shrink-0 text-sm text-zinc-300">{r.label}</div>
+          <div className="h-6 flex-1 overflow-hidden rounded bg-zinc-800">
             <div
-              className={`flex h-full items-center justify-end rounded px-2 text-xs font-medium text-slate-950 ${r.tone}`}
+              className={`flex h-full items-center justify-end rounded px-2 text-xs font-medium text-zinc-950 ${r.tone}`}
               style={{ width: `${Math.max(4, (r.cents / max) * 100)}%` }}
             >
               {money(r.cents)}

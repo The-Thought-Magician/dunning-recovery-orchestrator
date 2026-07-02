@@ -241,7 +241,7 @@ export default function RoutingPage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-xl font-semibold text-white">Routing Engine</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Build prioritized rules that map failed charges to recovery tactics. Simulate before you apply.
           </p>
         </div>
@@ -259,8 +259,8 @@ export default function RoutingPage() {
       </div>
 
       {banner && (
-        <Card className={banner.tone === 'emerald' ? 'border-emerald-500/40 bg-emerald-500/5' : 'border-red-500/40 bg-red-500/5'}>
-          <CardBody className={banner.tone === 'emerald' ? 'text-sm text-emerald-300' : 'text-sm text-red-300'}>
+        <Card className={banner.tone === 'emerald' ? 'border-amber-500/40 bg-amber-500/5' : 'border-red-500/40 bg-red-500/5'}>
+          <CardBody className={banner.tone === 'emerald' ? 'text-sm text-amber-300' : 'text-sm text-red-300'}>
             {banner.text}
           </CardBody>
         </Card>
@@ -323,12 +323,12 @@ export default function RoutingPage() {
                   const conds = asConditions(rule.conditions)
                   return (
                     <TR key={rule.id}>
-                      <TD className="font-mono text-xs text-slate-400">{rule.priority}</TD>
-                      <TD className="text-slate-200">{rule.name}</TD>
+                      <TD className="font-mono text-xs text-zinc-400">{rule.priority}</TD>
+                      <TD className="text-zinc-200">{rule.name}</TD>
                       <TD>
                         <div className="flex flex-wrap gap-1">
                           {conds.length === 0 ? (
-                            <span className="text-xs text-slate-600">any</span>
+                            <span className="text-xs text-zinc-600">any</span>
                           ) : (
                             conds.map((c, i) => (
                               <Badge key={i} tone="slate">
@@ -341,7 +341,7 @@ export default function RoutingPage() {
                         </div>
                       </TD>
                       <TD>
-                        <span className="font-mono text-xs text-emerald-400">{rule.target_tactic}</span>
+                        <span className="font-mono text-xs text-amber-400">{rule.target_tactic}</span>
                       </TD>
                       <TD>
                         <button onClick={() => toggleActive(rule)} className="cursor-pointer">
@@ -372,18 +372,18 @@ export default function RoutingPage() {
         <Card>
           <CardHeader className="flex items-center justify-between">
             <h2 className="text-sm font-semibold text-white">Simulation preview</h2>
-            <span className="text-xs text-slate-500">{sim.assignments.length} charges</span>
+            <span className="text-xs text-zinc-500">{sim.assignments.length} charges</span>
           </CardHeader>
           <CardBody className="space-y-4">
             <div className="flex flex-wrap gap-2">
               {Object.entries(sim.counts ?? {}).map(([tactic, n]) => (
                 <Badge key={tactic} tone="emerald">
                   <span className="font-mono">{tactic}</span>
-                  <span className="ml-1.5 text-emerald-200">{n}</span>
+                  <span className="ml-1.5 text-amber-200">{n}</span>
                 </Badge>
               ))}
               {Object.keys(sim.counts ?? {}).length === 0 && (
-                <span className="text-xs text-slate-500">No assignments produced.</span>
+                <span className="text-xs text-zinc-500">No assignments produced.</span>
               )}
             </div>
             {sim.assignments.length > 0 && (
@@ -398,9 +398,9 @@ export default function RoutingPage() {
                 <TBody>
                   {sim.assignments.slice(0, 50).map((a) => (
                     <TR key={a.charge_id}>
-                      <TD className="font-mono text-xs text-slate-400">{a.charge_id.slice(0, 8)}</TD>
-                      <TD className="font-mono text-xs text-emerald-400">{a.tactic}</TD>
-                      <TD className="text-xs text-slate-400">
+                      <TD className="font-mono text-xs text-zinc-400">{a.charge_id.slice(0, 8)}</TD>
+                      <TD className="font-mono text-xs text-amber-400">{a.tactic}</TD>
+                      <TD className="text-xs text-zinc-400">
                         {a.rule_id ? ruleNameById[a.rule_id] ?? a.rule_id.slice(0, 8) : 'default'}
                       </TD>
                     </TR>
@@ -409,7 +409,7 @@ export default function RoutingPage() {
               </Table>
             )}
             {sim.assignments.length > 50 && (
-              <p className="text-xs text-slate-600">Showing first 50 of {sim.assignments.length}.</p>
+              <p className="text-xs text-zinc-600">Showing first 50 of {sim.assignments.length}.</p>
             )}
             <div className="flex justify-end">
               <Button size="sm" onClick={applyNow} disabled={busy}>
@@ -446,15 +446,15 @@ export default function RoutingPage() {
               <TBody>
                 {decisions.map((d) => (
                   <TR key={d.id}>
-                    <TD className="text-xs text-slate-500">
+                    <TD className="text-xs text-zinc-500">
                       {d.created_at ? new Date(d.created_at).toLocaleString() : '—'}
                     </TD>
-                    <TD className="font-mono text-xs text-slate-400">{d.failed_charge_id.slice(0, 8)}</TD>
-                    <TD className="font-mono text-xs text-emerald-400">{d.chosen_tactic}</TD>
-                    <TD className="text-xs text-slate-400">
+                    <TD className="font-mono text-xs text-zinc-400">{d.failed_charge_id.slice(0, 8)}</TD>
+                    <TD className="font-mono text-xs text-amber-400">{d.chosen_tactic}</TD>
+                    <TD className="text-xs text-zinc-400">
                       {d.rule_id ? ruleNameById[d.rule_id] ?? d.rule_id.slice(0, 8) : 'default'}
                     </TD>
-                    <TD className="text-xs text-slate-400">{d.reason}</TD>
+                    <TD className="text-xs text-zinc-400">{d.reason}</TD>
                   </TR>
                 ))}
               </TBody>
@@ -482,39 +482,39 @@ export default function RoutingPage() {
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-3">
             <div className="col-span-2">
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Name</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Name</label>
               <input
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 placeholder="e.g. Insufficient funds → smart retry"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Priority</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Priority</label>
               <input
                 type="number"
                 value={form.priority}
                 onChange={(e) => setForm({ ...form, priority: Number(e.target.value) })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Target tactic
               </label>
               <input
                 value={form.target_tactic}
                 onChange={(e) => setForm({ ...form, target_tactic: e.target.value })}
                 placeholder="tactic key"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500 focus:outline-none"
               />
             </div>
           </div>
 
           <div>
             <div className="mb-2 flex items-center justify-between">
-              <label className="text-xs font-medium uppercase tracking-wide text-slate-500">Conditions (all must match)</label>
+              <label className="text-xs font-medium uppercase tracking-wide text-zinc-500">Conditions (all must match)</label>
               <Button size="sm" variant="ghost" onClick={addCondition}>
                 + Add
               </Button>
@@ -525,7 +525,7 @@ export default function RoutingPage() {
                   <select
                     value={c.field}
                     onChange={(e) => updateCondition(i, { field: e.target.value })}
-                    className="rounded-lg border border-slate-700 bg-slate-950 px-2 py-2 text-xs text-slate-200 focus:border-emerald-500 focus:outline-none"
+                    className="rounded-lg border border-zinc-700 bg-zinc-950 px-2 py-2 text-xs text-zinc-200 focus:border-amber-500 focus:outline-none"
                   >
                     {FIELDS.map((f) => (
                       <option key={f} value={f}>
@@ -536,7 +536,7 @@ export default function RoutingPage() {
                   <select
                     value={c.op}
                     onChange={(e) => updateCondition(i, { op: e.target.value })}
-                    className="rounded-lg border border-slate-700 bg-slate-950 px-2 py-2 text-xs text-slate-200 focus:border-emerald-500 focus:outline-none"
+                    className="rounded-lg border border-zinc-700 bg-zinc-950 px-2 py-2 text-xs text-zinc-200 focus:border-amber-500 focus:outline-none"
                   >
                     {OPS.map((o) => (
                       <option key={o} value={o}>
@@ -548,11 +548,11 @@ export default function RoutingPage() {
                     value={c.value}
                     onChange={(e) => updateCondition(i, { value: e.target.value })}
                     placeholder="value"
-                    className="flex-1 rounded-lg border border-slate-700 bg-slate-950 px-2 py-2 text-xs text-slate-200 focus:border-emerald-500 focus:outline-none"
+                    className="flex-1 rounded-lg border border-zinc-700 bg-zinc-950 px-2 py-2 text-xs text-zinc-200 focus:border-amber-500 focus:outline-none"
                   />
                   <button
                     onClick={() => removeCondition(i)}
-                    className="rounded-md px-2 py-1 text-slate-500 hover:bg-slate-800 hover:text-red-400"
+                    className="rounded-md px-2 py-1 text-zinc-500 hover:bg-zinc-800 hover:text-red-400"
                     aria-label="Remove condition"
                   >
                     ✕
@@ -562,12 +562,12 @@ export default function RoutingPage() {
             </div>
           </div>
 
-          <label className="flex items-center gap-2 text-sm text-slate-300">
+          <label className="flex items-center gap-2 text-sm text-zinc-300">
             <input
               type="checkbox"
               checked={form.is_active}
               onChange={(e) => setForm({ ...form, is_active: e.target.checked })}
-              className="h-4 w-4 rounded border-slate-700 bg-slate-950 accent-emerald-500"
+              className="h-4 w-4 rounded border-zinc-700 bg-zinc-950 accent-amber-500"
             />
             Active
           </label>
